@@ -1,0 +1,27 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Kotlin
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlin_version"
+
+    // Retrofit
+    ext.retrofit_version = "2.3.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.chibatching.kotpref:kotpref:2.5.0"
+    implementation "com.squareup.retrofit2:converter-simplexml:2.0.0-beta4"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+
+    // OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"

@@ -1,0 +1,1 @@
+include ':app', ':model', ':service', ':player', ':app_company'
