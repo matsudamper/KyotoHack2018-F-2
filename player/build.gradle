@@ -1,18 +1,15 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
     buildToolsVersion "28.0.2"
-
-
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -22,15 +19,29 @@ android {
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':model')
+    implementation project(path: ':android_lib')
 
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+
+    // support
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-rc01'
+    implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
+    implementation 'com.google.android.material:material:1.0.0-rc01'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
 
     // ExoPlayer
     implementation 'com.google.android.exoplayer:exoplayer-core:2.6.1'
@@ -38,4 +49,8 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-hls:2.6.1'
     implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.6.1'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.6.1'
+}
+
+repositories {
+    mavenCentral()
 }
