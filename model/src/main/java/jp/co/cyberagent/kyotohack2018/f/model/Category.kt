@@ -1,4 +1,4 @@
-package jp.co.cyberagent.kyotohack2018.f.data
+package jp.co.cyberagent.kyotohack2018.f.model
 
 import java.io.Serializable
 
