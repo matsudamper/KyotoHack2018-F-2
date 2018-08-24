@@ -1,6 +1,7 @@
 package jp.co.cyberagent.kyotohack2018.f.android_lib;
 
 import android.content.Context;
+
 import androidx.test.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
