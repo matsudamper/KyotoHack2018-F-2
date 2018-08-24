@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jp.co.cyberagent.kyotohack2018.f.player" />
+    package="jp.co.cyberagent.kyotohack2018.f.player">
+
+    <application>
+        <activity android:name=".PlayerActivity" />
+    </application>
+</manifest>
