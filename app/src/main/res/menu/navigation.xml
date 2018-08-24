@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/main"
+        android:icon="@drawable/ic_baseline_home_24px"
+        android:title="TOP"
+        app:contentDescription="TOP" />
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_baseline_search_24px"
+        android:title="SEARCH"
+        app:contentDescription="SEARCH" />
+
+    <item
+        android:id="@+id/my_page"
+        android:icon="@drawable/ic_baseline_perm_identity_24px"
+        android:title="MyPage"
+        app:contentDescription="MyPage" />
+</menu>
