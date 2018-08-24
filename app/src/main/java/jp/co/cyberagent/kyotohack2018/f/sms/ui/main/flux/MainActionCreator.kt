@@ -30,7 +30,7 @@ class MainActionCreator : ViewModel(), KoinComponent {
     private fun navigate(manager: FragmentManager, fragment: Fragment, isAddToBackStack: Boolean = true) {
         manager.beginTransaction()
                 .replace(containerId, fragment)
-                .apply { if (isAddToBackStack) addToBackStack(fragment::class.simpleName) }
+                .apply { if (isAddToBackStack) addToBackStack(fragment::class.java.name) }
                 .commitAllowingStateLoss()
     }
 
