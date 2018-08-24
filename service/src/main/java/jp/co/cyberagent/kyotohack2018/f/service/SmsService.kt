@@ -6,22 +6,29 @@ import jp.co.cyberagent.kyotohack2018.f.model.HomeContent
 import jp.co.cyberagent.kyotohack2018.f.model.User
 import jp.co.cyberagent.kyotohack2018.f.model.company.Company
 import jp.co.cyberagent.kyotohack2018.f.model.content.Content
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface SmsService {
 
+    @GET("home_content")
     fun getHomeContent(): HomeContent
 
+    @GET("categories")
     fun getCategories(): List<Category>
 
-    fun getContentArticle(currentPage: Long): List<Article>
+    @GET("content_article")
+    fun getContentArticle(page: Long = 0): List<Article>
 
+    @GET("my_user_info")
     fun getMyUser(): User
 
-    // 全部の情報が欲しい時
-    fun getContent(id: Long): Content
+    @GET("content")
+    fun getContent(@Query("id") id: Long): Content
 
-    fun getCompany(id: Long): Company
+    @GET("company")
+    fun getCompany(@Query("id") id: Long): Company
 
-    // 検索系
-    fun searchContent(categoryId: List<Long>): List<Content>
+    @GET("search")
+    fun searchContent(categoryId: List<List<Long>>, page: Int): List<Content>
 }
