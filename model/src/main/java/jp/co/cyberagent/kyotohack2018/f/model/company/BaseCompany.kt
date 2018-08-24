@@ -1,6 +1,6 @@
 package jp.co.cyberagent.kyotohack2018.f.model.company
 
-interface CompanyBase {
+interface BaseCompany {
     val id: Long
     val thumbnail: String?
     val name: String

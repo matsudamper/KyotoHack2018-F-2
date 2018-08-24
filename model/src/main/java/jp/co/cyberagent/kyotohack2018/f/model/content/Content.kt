@@ -1,5 +1,6 @@
-package jp.co.cyberagent.kyotohack2018.f.model
+package jp.co.cyberagent.kyotohack2018.f.model.content
 
+import jp.co.cyberagent.kyotohack2018.f.model.Category
 import jp.co.cyberagent.kyotohack2018.f.model.company.Company
 import java.io.Serializable
 
@@ -17,4 +18,4 @@ data class Content(
         val slideUrls: List<String>,
         val movieUrl: String,
         val timeMap: Map<Int/* ページ数 */, Long /* 時間 */>? //スライドが無い場合はnull
-) : ContentBase, Serializable
+) : BaseContent, Serializable

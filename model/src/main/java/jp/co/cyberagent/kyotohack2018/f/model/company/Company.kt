@@ -1,5 +1,6 @@
-package jp.co.cyberagent.kyotohack2018.f.model
+package jp.co.cyberagent.kyotohack2018.f.model.company
 
+import jp.co.cyberagent.kyotohack2018.f.model.Event
 import java.io.Serializable
 
 
@@ -10,5 +11,7 @@ data class Company(
         override val name: String,
         override val description: String,
         override val url: String,
-        override val address: String
+        override val address: String,
+        val topEvent: Event?,// 推したいイベント
+        val events: List<Event>// イベント一覧
 ) : BaseCompany, Serializable

@@ -1,5 +1,7 @@
-package jp.co.cyberagent.kyotohack2018.f.data
+package jp.co.cyberagent.kyotohack2018.f.model
 
+import jp.co.cyberagent.kyotohack2018.f.model.company.Company
+import jp.co.cyberagent.kyotohack2018.f.model.content.Content
 import java.io.Serializable
 
 // 開催イベント

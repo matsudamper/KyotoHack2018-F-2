@@ -1,4 +1,4 @@
-package jp.co.cyberagent.kyotohack2018.f.data
+package jp.co.cyberagent.kyotohack2018.f.model
 
 import java.io.Serializable
 
@@ -7,7 +7,7 @@ import java.io.Serializable
 data class User(
         val id: Long,
         val name: String,
-        val posts: List<Post>,
+        val posts: List<Article>,
         val createAt: Long
 //        val githubStatus : GitHubStatus,// ログインで得られるGitHubの情報によってデータクラスを作る
 ) : Serializable

@@ -3,7 +3,8 @@ package jp.co.cyberagent.kyotohack2018.f.model
 import java.io.Serializable
 
 
-data class Tag(
+data class Category(
         val id: Long,
-        val name: String
+        val name: String,
+        val categories : List<Category>?
 ) : Serializable

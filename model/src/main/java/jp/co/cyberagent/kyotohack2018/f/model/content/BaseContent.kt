@@ -1,8 +1,9 @@
-package jp.co.cyberagent.kyotohack2018.f.model
+package jp.co.cyberagent.kyotohack2018.f.model.content
 
+import jp.co.cyberagent.kyotohack2018.f.model.Category
 import jp.co.cyberagent.kyotohack2018.f.model.company.Company
 
-interface ContentBase {
+interface BaseContent {
     val id: Long
     val company: Company
     val author: String

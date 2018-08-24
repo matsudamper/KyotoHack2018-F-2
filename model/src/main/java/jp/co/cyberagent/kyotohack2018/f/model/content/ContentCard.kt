@@ -1,5 +1,6 @@
-package jp.co.cyberagent.kyotohack2018.f.model
+package jp.co.cyberagent.kyotohack2018.f.model.content
 
+import jp.co.cyberagent.kyotohack2018.f.model.Category
 import jp.co.cyberagent.kyotohack2018.f.model.company.Company
 import java.io.Serializable
 
@@ -14,4 +15,4 @@ data class ContentCard(
         override val thumbnail: String,
         override val isBookMarked: Boolean,
         override val createAt: Long
-) : ContentBase, Serializable
+) : BaseContent, Serializable
