@@ -1,5 +1,7 @@
 package jp.co.cyberagent.kyotohack2018.f.data
 
+import java.io.Serializable
+
 
 // 投稿記事
 data class Post(
@@ -9,4 +11,4 @@ data class Post(
         val description: String,
         val thumbnail: String,
         val url: String
-)
+) : Serializable

@@ -1,5 +1,7 @@
 package jp.co.cyberagent.kyotohack2018.f.data
 
+import java.io.Serializable
+
 
 // 会社情報
 data class Company(
@@ -9,4 +11,4 @@ data class Company(
         val description: String,
         val url: String,
         val address: String
-)
+) : Serializable
