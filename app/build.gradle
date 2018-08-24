@@ -23,10 +23,16 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':model')
+    implementation project(path: ':service')
+    implementation project(path: ':player')
 
     // Test
     testImplementation 'junit:junit:4.12'
@@ -41,11 +47,16 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     implementation 'com.google.android:flexbox:1.0.0'
 
+    // View
+    implementation 'com.xwray:groupie:2.1.0'
+    implementation 'com.xwray:groupie-kotlin-android-extensions:2.1.0'
+    implementation 'com.xwray:groupie-databinding:2.1.0'
+
     // Navigation
     implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha05'
 
     // Kotlin
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.23.4"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.23.4"
 
@@ -56,6 +67,12 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     implementation "org.koin:koin-androidx-scope:$koin_version"
     testImplementation "org.koin:koin-test:$koin_version"
+
+    // Rx
+    implementation "io.reactivex.rxjava2:rxjava:2.1.10"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+    implementation "io.reactivex.rxjava2:rxkotlin:2.2.0"
+    implementation "com.jakewharton.rxbinding2:rxbinding:2.1.1"
 
     // AAC
     ext.aac_version = '2.0.0-beta01'
