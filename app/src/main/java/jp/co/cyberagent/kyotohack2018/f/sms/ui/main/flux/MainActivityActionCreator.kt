@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import io.reactivex.schedulers.Schedulers
 import jp.co.cyberagent.kyotohack2018.f.sms.R
-import jp.co.cyberagent.kyotohack2018.f.sms.di.println
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.HomeRepository
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.home.HomeFragment
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.SarchFragment
@@ -45,7 +44,6 @@ class MainActivityActionCreator(
         homeRepository.getHomeContent()
                 .subscribeOn(Schedulers.io())
                 .subscribe({
-                    it.println()
                     mainActivityDispatcher.dispatch(MainActivityAction.LoadHomeContent(it))
                 }, {
                     it.printStackTrace()
