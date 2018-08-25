@@ -30,14 +30,13 @@ class MainActivity : AppCompatActivity() {
                     mainActivityActionCreator.changeFragment(supportFragmentManager, it)
                 }
 
-        binding.bottomNavigationView.setOnNavigationItemReselectedListener {
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             mainActivityActionCreator.changeBottom(it.itemId)
+            return@setOnNavigationItemSelectedListener true
         }
 
-        mainActivityActionCreator.changeFragment(
-                supportFragmentManager,
-                R.id.home,
-                isAddToBackStack = false
-        )
+        if (savedInstanceState == null) {
+            mainActivityActionCreator.changeFragment(supportFragmentManager, R.id.home, false)
+        }
     }
 }
