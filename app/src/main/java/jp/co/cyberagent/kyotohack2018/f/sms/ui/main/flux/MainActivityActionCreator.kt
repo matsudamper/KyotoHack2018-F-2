@@ -1,9 +1,9 @@
 package jp.co.cyberagent.kyotohack2018.f.sms.ui.main.flux
 
+import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import jp.co.cyberagent.kyotohack2018.f.sms.R
-import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.MainActivityFragments
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.home.HomeFragment
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.get
@@ -19,11 +19,11 @@ class MainActivityActionCreator : KoinComponent {
         mainActivityDispatcher.dispatch(MainActivityAction.ChangeBottom(position))
     }
 
-    fun changeFragment(manager: FragmentManager, position: Int, isAddToBackStack: Boolean = true) {
-        when (position) {
-            MainActivityFragments.HOME -> navigate(manager, get<HomeFragment>(), isAddToBackStack)
-            MainActivityFragments.SEARCH -> navigate(manager, get<HomeFragment>())
-            MainActivityFragments.MYPAGE -> navigate(manager, get<HomeFragment>())
+    fun changeFragment(manager: FragmentManager, @IdRes itemId: Int, isAddToBackStack: Boolean = true) {
+        when (itemId) {
+            R.id.home -> navigate(manager, get<HomeFragment>(), isAddToBackStack)
+            R.id.search -> navigate(manager, get<HomeFragment>())
+            R.id.my_page -> navigate(manager, get<HomeFragment>())
         }
     }
 

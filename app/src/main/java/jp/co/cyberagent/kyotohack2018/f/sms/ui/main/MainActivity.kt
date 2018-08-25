@@ -31,18 +31,12 @@ class MainActivity : AppCompatActivity() {
                 }
 
         binding.bottomNavigationView.setOnNavigationItemReselectedListener {
-            val index = when (it.itemId) {
-                R.id.home -> 0
-                R.id.search -> 1
-                R.id.my_page -> 2
-                else -> throw IllegalStateException()
-            }
-            mainActivityActionCreator.changeBottom(index)
+            mainActivityActionCreator.changeBottom(it.itemId)
         }
 
         mainActivityActionCreator.changeFragment(
                 supportFragmentManager,
-                MainActivityFragments.HOME,
+                R.id.home,
                 isAddToBackStack = false
         )
     }
