@@ -1,11 +1,11 @@
 package jp.co.cyberagent.kyotohack2018.f.model.content
 
-import jp.co.cyberagent.kyotohack2018.f.model.Category
-import jp.co.cyberagent.kyotohack2018.f.model.company.Company
+import jp.co.cyberagent.kyotohack2018.f.model.category.Category
+import jp.co.cyberagent.kyotohack2018.f.model.company.CompanyCard
 
 interface BaseContent {
     val id: Long
-    val company: Company
+    val company: CompanyCard
     val author: String
     val categories: List<Category>
     val title: String

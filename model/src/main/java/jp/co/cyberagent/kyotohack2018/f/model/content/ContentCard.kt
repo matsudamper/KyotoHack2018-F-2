@@ -1,6 +1,6 @@
 package jp.co.cyberagent.kyotohack2018.f.model.content
 
-import jp.co.cyberagent.kyotohack2018.f.model.Category
+import jp.co.cyberagent.kyotohack2018.f.model.category.RootCategory
 import jp.co.cyberagent.kyotohack2018.f.model.company.Company
 import java.io.Serializable
 
@@ -9,7 +9,7 @@ data class ContentCard(
         override val id: Long,
         override val company: Company,
         override val author: String,
-        override val categories: List<Category>,
+        override val categories: List<RootCategory>,
         override val title: String,
         override val description: String,
         override val thumbnail: String,

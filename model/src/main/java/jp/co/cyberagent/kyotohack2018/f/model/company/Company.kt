@@ -1,6 +1,6 @@
 package jp.co.cyberagent.kyotohack2018.f.model.company
 
-import jp.co.cyberagent.kyotohack2018.f.model.Event
+import jp.co.cyberagent.kyotohack2018.f.model.event.Event
 import java.io.Serializable
 
 
