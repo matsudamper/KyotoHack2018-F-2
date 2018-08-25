@@ -2,4 +2,12 @@
 <resources>
     <dimen name="thumbnail_small_width">100dp</dimen>
     <dimen name="list_card_radius">5dp</dimen>
+
+    <dimen name="list_main_image_size">80dp</dimen>
+    <dimen name="list_sub_image_size">65dp</dimen>
+
+    <dimen name="list_company_content_height">40dp</dimen>
+
+    <dimen name="list_text_size_title">25dp</dimen>
+    <dimen name="list_text_size">15dp</dimen>
 </resources>
