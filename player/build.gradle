@@ -34,6 +34,7 @@ dependencies {
 
     // test
     testImplementation 'junit:junit:4.12'
+    testImplementation "org.mockito:mockito-core:2.21.0"
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 
@@ -42,6 +43,14 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
     implementation 'com.google.android.material:material:1.0.0-rc01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+
+    // KOIN
+    ext.koin_version = "1.0.0-beta-3"
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    testImplementation "org.koin:koin-test:$koin_version"
 
     // ExoPlayer
     implementation 'com.google.android.exoplayer:exoplayer-core:2.6.1'

@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/main"
+        android:id="@+id/home"
         android:icon="@drawable/ic_baseline_home_24px"
-        android:title="TOP"
+        android:title="@string/fragment_home"
         app:contentDescription="TOP" />
 
     <item
         android:id="@+id/search"
         android:icon="@drawable/ic_baseline_search_24px"
-        android:title="SEARCH"
+        android:title="@string/fragment_search"
         app:contentDescription="SEARCH" />
 
     <item
         android:id="@+id/my_page"
         android:icon="@drawable/ic_baseline_perm_identity_24px"
-        android:title="MyPage"
+        android:title="@string/fragment_mypage"
         app:contentDescription="MyPage" />
 </menu>

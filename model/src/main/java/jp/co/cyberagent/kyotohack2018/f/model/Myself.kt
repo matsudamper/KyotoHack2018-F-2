@@ -3,8 +3,10 @@ package jp.co.cyberagent.kyotohack2018.f.model
 import java.io.Serializable
 
 
-data class Category(
+// 自分のユーザー情報
+data class Myself(
         val id: Long,
         val name: String,
-        val categories : List<Category>?
+        val posts: List<Article>,
+        val createAt: Long
 ) : Serializable
