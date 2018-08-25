@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SlideMovieSync</string>
+
+    <string name="fragment_home">ホーム</string>
+    <string name="fragment_search">検索</string>
+    <string name="fragment_mypage">マイページ</string>
 </resources>
