@@ -4,9 +4,10 @@ import io.reactivex.Flowable
 import jp.co.cyberagent.kyotohack2018.f.model.Article
 import jp.co.cyberagent.kyotohack2018.f.model.HomeContent
 import jp.co.cyberagent.kyotohack2018.f.model.Myself
-import jp.co.cyberagent.kyotohack2018.f.model.category.Category
+import jp.co.cyberagent.kyotohack2018.f.model.category.RootCategory
 import jp.co.cyberagent.kyotohack2018.f.model.company.Company
 import jp.co.cyberagent.kyotohack2018.f.model.content.Content
+import jp.co.cyberagent.kyotohack2018.f.model.content.ContentCard
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -20,7 +21,7 @@ interface SmsService {
     fun getHomeContent(): Flowable<HomeContent>
 
     @GET("/categories")
-    fun getCategories(): Flowable<List<Category>>
+    fun getCategories(): Flowable<List<RootCategory>>
 
     @GET("/content_article")
     fun getContentArticle(page: Long = 0): Flowable<List<Article>>
@@ -35,5 +36,5 @@ interface SmsService {
     fun getCompany(@Query("id") id: Long): Flowable<Company>
 
     @GET("/search")
-    fun searchContent(categoryId: List<List<Long>>, page: Int): Flowable<List<Content>>
+    fun searchContentCard(categoryId: List<List<Long>>, page: Int): Flowable<List<ContentCard>>
 }
