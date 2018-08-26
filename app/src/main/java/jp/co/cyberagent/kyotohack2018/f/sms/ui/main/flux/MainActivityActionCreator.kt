@@ -19,12 +19,13 @@ class MainActivityActionCreator(
         private val mainActivityDispatcher: MainActivityDispatcher
 ) : KoinComponent {
 
+    var hoge = 0
+
     private val containerId = R.id.container
 
     fun changeBottom(position: Int) {
         mainActivityDispatcher.dispatch(MainActivityAction.ChangeBottom(position))
     }
-
 
     fun changeFragment(manager: FragmentManager, tolbar: Toolbar,@IdRes itemId: Int, isAddToBackStack: Boolean = true) {
 
@@ -58,6 +59,17 @@ class MainActivityActionCreator(
                     mainActivityDispatcher.dispatch(MainActivityAction.LoadHomeContent(it))
                 }, {
                     it.printStackTrace()
+                })
+    }
+
+    @SuppressLint("CheckResult")
+    fun loadMyself() {
+        homeRepository.getMyself()
+                .subscribeOn(Schedulers.io())
+                .subscribe({
+                    mainActivityDispatcher.dispatch(MainActivityAction.LoadMyself(it))
+                }, {
+
                 })
     }
 }

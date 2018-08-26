@@ -19,6 +19,7 @@ import java.util.*
 
 class SmsMockService : SmsService {
     override fun getHomeContent() = Single.create<HomeContent> { emitter ->
+        println("LOG: getHomeContent")
         launch(UI) {
             kotlinx.coroutines.experimental.delay(1000)
             emitter.onSuccess(HomeContent(
@@ -32,6 +33,7 @@ class SmsMockService : SmsService {
     }
 
     override fun getCategories() = Single.create<List<RootCategory>> { emitter ->
+        println("LOG: getCategories")
         launch(UI) {
             kotlinx.coroutines.experimental.delay(1000)
             emitter.onSuccess(mockCategories())
@@ -39,6 +41,7 @@ class SmsMockService : SmsService {
     }
 
     override fun getContentArticle(page: Long) = BehaviorProcessor.create<List<Article>>().apply {
+        println("LOG: getContentArticle")
 
         launch(UI) {
             kotlinx.coroutines.experimental.delay(1000)
@@ -47,6 +50,8 @@ class SmsMockService : SmsService {
     }
 
     override fun getMyself() = BehaviorProcessor.create<Myself>().apply {
+        println("LOG: getMyself")
+
         launch(UI) {
             kotlinx.coroutines.experimental.delay(1000)
             onNext(mockMyUser())
@@ -54,6 +59,8 @@ class SmsMockService : SmsService {
     }
 
     override fun getContent(id: Long) = Single.create<Content> { emitter ->
+        println("LOG: getContent")
+
         launch(UI) {
             kotlinx.coroutines.experimental.delay(1000)
             emitter.onSuccess(mockContent())
@@ -61,6 +68,8 @@ class SmsMockService : SmsService {
     }
 
     override fun getCompany(id: Long) = Single.create<Company> { emitter ->
+        println("LOG: getCompany")
+
         launch(UI) {
             kotlinx.coroutines.experimental.delay(1000)
             emitter.onSuccess(mockCompany())
@@ -68,6 +77,8 @@ class SmsMockService : SmsService {
     }
 
     override fun getEvent(id: Long) = Single.create<Event> { emitter ->
+        println("LOG: getEvent")
+
         launch(UI) {
             kotlinx.coroutines.experimental.delay(1000)
             emitter.onSuccess(mockEvent())
@@ -75,6 +86,8 @@ class SmsMockService : SmsService {
     }
 
     override fun searchContentCard(categoryId: List<List<Long>>, page: Int) = Single.create<List<ContentCard>> { emitter ->
+        println("LOG: searchContentCard")
+
         launch(UI) {
             kotlinx.coroutines.experimental.delay(1000)
             emitter.onSuccess(mockContentCardList())

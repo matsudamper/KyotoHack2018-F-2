@@ -8,4 +8,5 @@ class HomeRepository(
 ) : KoinComponent {
 
     fun getHomeContent() = smsService.getHomeContent()
+    fun getMyself() = smsService.getMyself()
 }

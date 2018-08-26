@@ -4,5 +4,4 @@ import jp.co.cyberagent.kyotohack2018.f.model.Myself
 import jp.co.cyberagent.kyotohack2018.f.sms.flux.Action
 
 sealed class MypageAction<T> : Action<T> {
-    data class LoadMyself(override val data: Myself) : MypageAction<Myself>()
 }

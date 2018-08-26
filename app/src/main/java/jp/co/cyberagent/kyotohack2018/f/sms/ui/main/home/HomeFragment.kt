@@ -1,6 +1,7 @@
 package jp.co.cyberagent.kyotohack2018.f.sms.ui.main.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,14 +12,11 @@ import com.xwray.groupie.ViewHolder
 import jp.co.cyberagent.kyotohack2018.f.model.HomeContent
 import jp.co.cyberagent.kyotohack2018.f.sms.R
 import jp.co.cyberagent.kyotohack2018.f.sms.databinding.FragmentHomeBinding
+import jp.co.cyberagent.kyotohack2018.f.sms.ext.doIfNull
 import jp.co.cyberagent.kyotohack2018.f.sms.ext.observeNotNull
 import jp.co.cyberagent.kyotohack2018.f.sms.flux.app.AppActionCreator
-import jp.co.cyberagent.kyotohack2018.f.sms.ui.company.CompanyActivity
-import jp.co.cyberagent.kyotohack2018.f.sms.ui.event.EventActivity
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.flux.MainActivityActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.flux.MainActivityStore
-import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.flux.MypageActionCreator
-import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.flux.MypageStore
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.home.item.HeaderSlider
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.view.slider.SliderData
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.view.slider.SliderHolder
@@ -29,22 +27,26 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
+
     private val mainActivityStore: MainActivityStore by viewModel()
     private val mainActivityActionCreator: MainActivityActionCreator by inject()
     private val appActionCreator: AppActionCreator by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(LayoutInflater.from(requireContext()), R.layout.fragment_home, container, false)
+
+        mainActivityStore.loadHomeContent
+                .doIfNull { mainActivityActionCreator.loadHomeContent() }
+                .observeNotNull(this) {
+                    setContent(it)
+                }
+        Log.d("LOG","TAG :::2::: $mainActivityActionCreator")
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mainActivityStore.loadHomeContent
-                .observeNotNull(this) { setContent(it) }
-
-        mainActivityActionCreator.loadHomeContent()
     }
 
     private fun setContent(homeContent: HomeContent) {
