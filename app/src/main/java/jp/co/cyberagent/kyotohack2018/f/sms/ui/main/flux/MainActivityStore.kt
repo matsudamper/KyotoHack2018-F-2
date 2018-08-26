@@ -11,4 +11,5 @@ class MainActivityStore(
 
     val changeBottom = mainActivityDispatcher.onBottomChange.toMappedLiveData()
     val loadHomeContent = mainActivityDispatcher.onLoadHomeContent.toMappedLiveData()
+    val loadMyself = mainActivityDispatcher.onLoadMyself.toMappedLiveData()
 }
