@@ -12,20 +12,26 @@ import jp.co.cyberagent.kyotohack2018.f.model.HomeContent
 import jp.co.cyberagent.kyotohack2018.f.sms.R
 import jp.co.cyberagent.kyotohack2018.f.sms.databinding.FragmentHomeBinding
 import jp.co.cyberagent.kyotohack2018.f.sms.ext.observeNotNull
+import jp.co.cyberagent.kyotohack2018.f.sms.flux.app.AppActionCreator
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.company.CompanyActivity
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.event.EventActivity
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.flux.MainActivityActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.flux.MainActivityStore
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.flux.MypageActionCreator
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.flux.MypageStore
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.home.item.HeaderSlider
-import jp.co.cyberagent.kyotohack2018.f.sms.ui.view.SliderData
-import jp.co.cyberagent.kyotohack2018.f.sms.ui.view.SliderHolder
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.view.slider.SliderData
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.view.slider.SliderHolder
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class HomeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
     private val mainActivityStore: MainActivityStore by viewModel()
     private val mainActivityActionCreator: MainActivityActionCreator by inject()
-
+    private val appActionCreator: AppActionCreator by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(LayoutInflater.from(requireContext()), R.layout.fragment_home, container, false)
@@ -45,20 +51,21 @@ class HomeFragment : Fragment() {
         binding.recyclerView.adapter = GroupAdapter<ViewHolder>().apply {
             add(HeaderSlider(homeContent.banners))
             add(SliderHolder(
-                    "新着",
-                    homeContent.newContent.map { SliderData(it.title, it.thumbnail, it) },
-                    { })
-            )
+                    "イベント", homeContent.events.map { SliderData(it.title, it.thumbnail, it) }) {
+                appActionCreator.openEvent(this@HomeFragment.context, it)
+            })
             add(SliderHolder(
-                    "ランキング",
-                    homeContent.rankings.map { SliderData(it.title, it.thumbnail, it) },
-                    { })
-            )
+                    "新着", homeContent.newContent.map { SliderData(it.title, it.thumbnail, it) }) {
+                appActionCreator.openContent(this@HomeFragment.context, it)
+            })
             add(SliderHolder(
-                    "履歴",
-                    homeContent.histories.map { SliderData(it.title, it.thumbnail, it) },
-                    { })
-            )
+                    "ランキング", homeContent.rankings.map { SliderData(it.title, it.thumbnail, it) }) {
+                appActionCreator.openContent(this@HomeFragment.context, it)
+            })
+            add(SliderHolder(
+                    "履歴", homeContent.histories.map { SliderData(it.title, it.thumbnail, it) }) {
+                appActionCreator.openContent(this@HomeFragment.context, it)
+            })
         }
     }
 }

@@ -15,7 +15,7 @@ data class Content(
         override val isBookMarked: Boolean,
         override val createAt: Long,
 
-        val slideUrls: List<String>,
+        val slideUrls: List<String>?,
         val movieUrl: String,
         val timeMap: Map<Int/* ページ数 */, Long /* 時間 */>? //スライドが無い場合はnull
 ) : BaseContent, Serializable
