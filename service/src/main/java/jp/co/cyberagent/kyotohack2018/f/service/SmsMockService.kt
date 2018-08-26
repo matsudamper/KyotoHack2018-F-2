@@ -10,6 +10,7 @@ import jp.co.cyberagent.kyotohack2018.f.model.company.Company
 import jp.co.cyberagent.kyotohack2018.f.model.company.CompanyCard
 import jp.co.cyberagent.kyotohack2018.f.model.content.Content
 import jp.co.cyberagent.kyotohack2018.f.model.content.ContentCard
+import jp.co.cyberagent.kyotohack2018.f.model.event.Event
 import jp.co.cyberagent.kyotohack2018.f.model.event.EventCard
 import java.util.*
 
@@ -42,6 +43,10 @@ class SmsMockService : SmsService {
 
     override fun getCompany(id: Long) = BehaviorProcessor.create<Company>().apply {
         onNext(mockCompany())
+    }
+
+    override fun getEvent(id: Long) = BehaviorProcessor.create<Event>().apply {
+        onNext(mockEvent())
     }
 
     override fun searchContentCard(categoryId: List<List<Long>>, page: Int) = BehaviorProcessor.create<List<ContentCard>>().apply {
@@ -127,7 +132,17 @@ class SmsMockService : SmsService {
             id = 100,
             description = "イベント説明",
             title = "イベントタイトル",
-            companyCard = mockCompaneyCard()
+            companyCard = mockCompaneyCard(),
+            thumbnail = "https://connpass-tokyo.s3.amazonaws.com/thumbs/a8/2f/a82f1b8ac1704680cdaae58b4356bec6.png"
+    )
+
+    private fun mockEvent() = Event(
+            id = 100,
+            description = "イベント説明",
+            title = "イベントタイトル",
+            companyCard = mockCompaneyCard(),
+            thumbnail = "https://connpass-tokyo.s3.amazonaws.com/thumbs/a8/2f/a82f1b8ac1704680cdaae58b4356bec6.png",
+            content = mockContentCardList()
     )
 
     private fun mockMyUser() = Myself(

@@ -8,6 +8,7 @@ import jp.co.cyberagent.kyotohack2018.f.model.category.RootCategory
 import jp.co.cyberagent.kyotohack2018.f.model.company.Company
 import jp.co.cyberagent.kyotohack2018.f.model.content.Content
 import jp.co.cyberagent.kyotohack2018.f.model.content.ContentCard
+import jp.co.cyberagent.kyotohack2018.f.model.event.Event
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -34,6 +35,9 @@ interface SmsService {
 
     @GET("/company")
     fun getCompany(@Query("id") id: Long): Flowable<Company>
+
+    @GET("/event")
+    fun getEvent(@Query("id") id: Long): Flowable<Event>
 
     @GET("/search")
     fun searchContentCard(categoryId: List<List<Long>>, page: Int): Flowable<List<ContentCard>>
