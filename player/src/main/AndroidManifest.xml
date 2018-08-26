@@ -2,6 +2,6 @@
     package="jp.co.cyberagent.kyotohack2018.f.player">
 
     <application>
-        <activity android:name=".PlayerActivity" />
+        <activity android:name="jp.co.cyberagent.kyotohack2018.f.sms.ui.content.PlayerActivity" />
     </application>
 </manifest>
