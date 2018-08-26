@@ -1,4 +1,4 @@
-package jp.co.cyberagent.kyotohack2018.f.sms.ui.view
+package jp.co.cyberagent.kyotohack2018.f.sms.ui.view.slider
 
 import com.xwray.groupie.databinding.BindableItem
 import jp.co.cyberagent.kyotohack2018.f.sms.R

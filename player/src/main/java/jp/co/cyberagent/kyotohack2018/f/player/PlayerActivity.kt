@@ -8,14 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import jp.co.cyberagent.kyotohack2018.f.android_lib.bundle
 import jp.co.cyberagent.kyotohack2018.f.model.content.Content
+import jp.co.cyberagent.kyotohack2018.f.model.content.ContentCard
 import jp.co.cyberagent.kyotohack2018.f.player.databinding.ActivityPlayBinding
 
 class PlayerActivity : AppCompatActivity() {
 
-    val content : Content by bundle()
+    val content: Content by bundle()
 
     companion object {
-        fun createIntent(context: Context?, content : Content) = Intent(context, PlayerActivity::class.java).apply {
+        fun createIntent(context: Context?, content: ContentCard) = Intent(context, PlayerActivity::class.java).apply {
             putExtra(PlayerActivity::content.name, content)
         }
     }

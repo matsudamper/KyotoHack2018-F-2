@@ -6,6 +6,7 @@ import jp.co.cyberagent.kyotohack2018.f.sms.ext.toFlowable
 import jp.co.cyberagent.kyotohack2018.f.sms.ext.toLastFlowable
 import jp.co.cyberagent.kyotohack2018.f.sms.flux.Action
 import jp.co.cyberagent.kyotohack2018.f.sms.flux.Dispatcher
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.flux.MypageAction
 
 class MainActivityDispatcher : Dispatcher {
     private val dispatcherChangeBottom = PublishProcessor.create<MainActivityAction.ChangeBottom>()

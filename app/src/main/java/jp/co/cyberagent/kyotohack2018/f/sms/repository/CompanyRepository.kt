@@ -3,9 +3,9 @@ package jp.co.cyberagent.kyotohack2018.f.sms.repository
 import jp.co.cyberagent.kyotohack2018.f.service.SmsService
 import org.koin.standalone.KoinComponent
 
-class HomeRepository(
+class CompanyRepository(
         private val smsService: SmsService
 ) : KoinComponent {
 
-    fun getHomeContent() = smsService.getHomeContent()
+    fun getCompany(id: Long) = smsService.getCompany(id)
 }

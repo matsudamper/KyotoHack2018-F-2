@@ -44,6 +44,24 @@
             tools:ignore="MissingConstraints"
             tools:text="CyberAgent" />
 
+        <TextView
+            android:id="@+id/company_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/list_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icon"
+            tools:ignore="MissingConstraints"
+            tools:text="CyberAgent" />
+
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
@@ -51,8 +69,9 @@
             android:layout_marginTop="8dp"
             android:background="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/company_name"
+            app:layout_constraintTop_toBottomOf="@+id/company_description"
             tools:layout_height="10dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

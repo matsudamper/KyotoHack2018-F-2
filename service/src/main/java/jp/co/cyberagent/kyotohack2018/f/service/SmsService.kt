@@ -1,6 +1,7 @@
 package jp.co.cyberagent.kyotohack2018.f.service
 
 import io.reactivex.Flowable
+import io.reactivex.Single
 import jp.co.cyberagent.kyotohack2018.f.model.Article
 import jp.co.cyberagent.kyotohack2018.f.model.HomeContent
 import jp.co.cyberagent.kyotohack2018.f.model.Myself
@@ -19,26 +20,26 @@ interface SmsService {
     }
 
     @GET("/home_content")
-    fun getHomeContent(): Flowable<HomeContent>
+    fun getHomeContent(): Single<HomeContent>
 
     @GET("/categories")
-    fun getCategories(): Flowable<List<RootCategory>>
+    fun getCategories(): Single<List<RootCategory>>
 
     @GET("/content_article")
     fun getContentArticle(page: Long = 0): Flowable<List<Article>>
 
     @GET("/my_user_info")
-    fun getMyUser(): Flowable<Myself>
+    fun getMyself(): Flowable<Myself>
 
     @GET("/content")
-    fun getContent(@Query("id") id: Long): Flowable<Content>
+    fun getContent(@Query("id") id: Long): Single<Content>
 
     @GET("/company")
-    fun getCompany(@Query("id") id: Long): Flowable<Company>
+    fun getCompany(@Query("id") id: Long): Single<Company>
 
     @GET("/event")
-    fun getEvent(@Query("id") id: Long): Flowable<Event>
+    fun getEvent(@Query("id") id: Long): Single<Event>
 
     @GET("/search")
-    fun searchContentCard(categoryId: List<List<Long>>, page: Int): Flowable<List<ContentCard>>
+    fun searchContentCard(categoryId: List<List<Long>>, page: Int): Single<List<ContentCard>>
 }

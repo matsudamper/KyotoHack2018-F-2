@@ -1,5 +1,6 @@
 package jp.co.cyberagent.kyotohack2018.f.service
 
+import io.reactivex.Single
 import io.reactivex.processors.BehaviorProcessor
 import jp.co.cyberagent.kyotohack2018.f.model.Article
 import jp.co.cyberagent.kyotohack2018.f.model.HomeContent
@@ -12,45 +13,72 @@ import jp.co.cyberagent.kyotohack2018.f.model.content.Content
 import jp.co.cyberagent.kyotohack2018.f.model.content.ContentCard
 import jp.co.cyberagent.kyotohack2018.f.model.event.Event
 import jp.co.cyberagent.kyotohack2018.f.model.event.EventCard
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.launch
 import java.util.*
 
 class SmsMockService : SmsService {
-    override fun getHomeContent() = BehaviorProcessor.create<HomeContent>().apply {
-        onNext(HomeContent(
-                banners = mockContentCardList(),
-                events = mockEventCardList(),
-                histories = mockContentCardList(),
-                newContent = mockContentCardList(),
-                rankings = mockContentCardList()
-        ))
+    override fun getHomeContent() = Single.create<HomeContent> { emitter ->
+        launch(UI) {
+            kotlinx.coroutines.experimental.delay(1000)
+            emitter.onSuccess(HomeContent(
+                    banners = mockContentCardList(),
+                    events = mockEventCardList(),
+                    histories = mockContentCardList(),
+                    newContent = mockContentCardList(),
+                    rankings = mockContentCardList()
+            ))
+        }
     }
 
-    override fun getCategories() = BehaviorProcessor.create<List<RootCategory>>().apply {
-        onNext(mockCategories())
+    override fun getCategories() = Single.create<List<RootCategory>> { emitter ->
+        launch(UI) {
+            kotlinx.coroutines.experimental.delay(1000)
+            emitter.onSuccess(mockCategories())
+        }
     }
 
     override fun getContentArticle(page: Long) = BehaviorProcessor.create<List<Article>>().apply {
-        onNext(mockArticleList())
+
+        launch(UI) {
+            kotlinx.coroutines.experimental.delay(1000)
+            onNext(mockArticleList())
+        }
     }
 
-    override fun getMyUser() = BehaviorProcessor.create<Myself>().apply {
-        onNext(mockMyUser())
+    override fun getMyself() = BehaviorProcessor.create<Myself>().apply {
+        launch(UI) {
+            kotlinx.coroutines.experimental.delay(1000)
+            onNext(mockMyUser())
+        }
     }
 
-    override fun getContent(id: Long) = BehaviorProcessor.create<Content>().apply {
-        onNext(mockContent())
+    override fun getContent(id: Long) = Single.create<Content> { emitter ->
+        launch(UI) {
+            kotlinx.coroutines.experimental.delay(1000)
+            emitter.onSuccess(mockContent())
+        }
     }
 
-    override fun getCompany(id: Long) = BehaviorProcessor.create<Company>().apply {
-        onNext(mockCompany())
+    override fun getCompany(id: Long) = Single.create<Company> { emitter ->
+        launch(UI) {
+            kotlinx.coroutines.experimental.delay(1000)
+            emitter.onSuccess(mockCompany())
+        }
     }
 
-    override fun getEvent(id: Long) = BehaviorProcessor.create<Event>().apply {
-        onNext(mockEvent())
+    override fun getEvent(id: Long) = Single.create<Event> { emitter ->
+        launch(UI) {
+            kotlinx.coroutines.experimental.delay(1000)
+            emitter.onSuccess(mockEvent())
+        }
     }
 
-    override fun searchContentCard(categoryId: List<List<Long>>, page: Int) = BehaviorProcessor.create<List<ContentCard>>().apply {
-        onNext(mockContentCardList())
+    override fun searchContentCard(categoryId: List<List<Long>>, page: Int) = Single.create<List<ContentCard>> { emitter ->
+        launch(UI) {
+            kotlinx.coroutines.experimental.delay(1000)
+            emitter.onSuccess(mockContentCardList())
+        }
     }
 
     private fun mockContent() = Content(
