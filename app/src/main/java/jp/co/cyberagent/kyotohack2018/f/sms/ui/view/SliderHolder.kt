@@ -1,16 +1,16 @@
-package jp.co.cyberagent.kyotohack2018.f.sms.ui.main.home.item
+package jp.co.cyberagent.kyotohack2018.f.sms.ui.view
 
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import com.xwray.groupie.databinding.BindableItem
-import jp.co.cyberagent.kyotohack2018.f.model.content.ContentCard
 import jp.co.cyberagent.kyotohack2018.f.sms.R
 import jp.co.cyberagent.kyotohack2018.f.sms.databinding.ViewContentSliderHolderBinding
 
 
-data class ContentSlider(
+data class SliderHolder<T>(
         private val title: String,
-        private val contentCardList: List<ContentCard>
+        private val sliderItemList: List<SliderData<T>>,
+        private val onClickListener: ((T) -> Unit)
 ) : BindableItem<ViewContentSliderHolderBinding>() {
 
     override fun getLayout(): Int = R.layout.view_content_slider_holder
@@ -18,7 +18,9 @@ data class ContentSlider(
     override fun bind(viewBinding: ViewContentSliderHolderBinding, position: Int) {
         viewBinding.title.text = title
         viewBinding.recyclerView.adapter = GroupAdapter<ViewHolder>().apply {
-            contentCardList.forEach { add(ContentSliderItem(it)) }
+            sliderItemList.forEach {
+                add(SliderItem(it) { onClickListener(it) })
+            }
         }
     }
 }
