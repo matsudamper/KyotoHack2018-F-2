@@ -45,6 +45,11 @@ class HomeFragment : Fragment() {
         binding.recyclerView.adapter = GroupAdapter<ViewHolder>().apply {
             add(HeaderSlider(homeContent.banners))
             add(SliderHolder(
+                    "イベント",
+                    homeContent.events.map { SliderData(it.title, it.thumbnail, it) },
+                    { })
+            )
+            add(SliderHolder(
                     "新着",
                     homeContent.newContent.map { SliderData(it.title, it.thumbnail, it) },
                     { })
