@@ -29,6 +29,9 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.company.CompanyActivity" />
+        <activity android:name=".ui.event.EventActivity" />
     </application>
 
 </manifest>

@@ -9,4 +9,5 @@ interface BaseEvent {
     val companyCard: CompanyCard
     val title: String
     val description: String
+    val thumbnail: String
 }

@@ -9,5 +9,6 @@ data class EventCard(
         override val id: Long,
         override val companyCard: CompanyCard,
         override val title: String,
-        override val description: String
+        override val description: String,
+        override val thumbnail: String
 ) : Serializable, BaseEvent
