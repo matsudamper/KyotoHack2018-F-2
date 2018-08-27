@@ -27,17 +27,17 @@ interface SmsService {
     @GET("/api/v1/categories")
     fun getCategories(): Single<List<RootCategory>>
 
-    @GET("/api/v1/content_article")
-    fun getContentArticle(page: Long = 0): Flowable<List<Article>>
+    @GET("/api/v1/content/{contentId}/articles/")
+    fun getContentArticle(@Path("contentId") id: Long): Flowable<List<Article>>
 
     @GET("/api/v1/contents/search")
     fun searchContents(categoryId: List<List<Long>>, page: Int): Single<List<ContentCard>>
 
-    @GET("/api/v1/content/{id}")
-    fun getContent(@Query("id") id: Long): Single<Content>
+    @GET("/api/v1/content/{contentId}")
+    fun getContent(@Query("contentId") id: Long): Single<Content>
 
-    @GET("/api/v1/company/{id}")
-    fun getCompany(@Query("id") id: Long): Single<Company>
+    @GET("/api/v1/company/{companyId}")
+    fun getCompany(@Query("companyId") id: Long): Single<Company>
 
     @GET("/api/v1/event/{eventId}")
     fun getEvent(@Path("eventId") id: Long): Single<Event>
