@@ -4,12 +4,17 @@ import com.google.firebase.auth.FirebaseAuth
 import jp.co.cyberagent.kyotohack2018.f.service.sms.RetrofitServiceGenerator
 import jp.co.cyberagent.kyotohack2018.f.sms.flux.app.AppActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.CompanyRepository
+import jp.co.cyberagent.kyotohack2018.f.sms.repository.ContentRepository
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.EventRepository
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.HomeRepository
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.company.CompanyActivity
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.company.flux.CompanyActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.company.flux.CompanyDispatcher
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.company.flux.CompanyStore
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.content.ContentActivity
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.content.flux.ContentActionCreator
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.content.flux.ContentDispatcher
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.content.flux.ContentStore
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.event.EventActivity
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.event.flux.EventActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.event.flux.EventDispatcher
@@ -33,16 +38,17 @@ import org.koin.dsl.path.moduleName
 val applicationModule = module {
     single { OkHttpClient.Builder().build() }
     single { RetrofitServiceGenerator.createSmsService() }
-//    single { SmsMockService() } bind SmsService::class
     single { AppActionCreator() }
     factory { HomeRepository(get()) }
     factory { CompanyRepository(get()) }
     factory { EventRepository(get()) }
+    factory { ContentRepository(get()) }
 
     single { MypageDispatvher() }
     single { MainActivityDispatcher() }
     single { CompanyDispatcher() }
     single { EventDispatcher() }
+    single { ContentDispatcher() }
 }
 
 val mainActivityModule = module(MainActivity::class.moduleName) {
@@ -70,4 +76,9 @@ val companyActivityModule = module(CompanyActivity::class.moduleName) {
 val eventActivityModule = module(EventActivity::class.moduleName) {
     factory { EventActionCreator(get(), get()) }
     viewModel { EventStore(get()) }
+}
+
+val contentActivityModule = module(ContentActivity::class.moduleName) {
+    factory { ContentActionCreator(get(), get()) }
+    viewModel { ContentStore(get()) }
 }
