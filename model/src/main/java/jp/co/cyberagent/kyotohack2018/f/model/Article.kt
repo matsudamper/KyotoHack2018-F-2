@@ -5,7 +5,7 @@ import java.io.Serializable
 
 // 投稿記事
 data class Article(
-        val id: Long,
+        val id: Long = -1,
         val contentId: Long,
         val title: String,
         val description: String,
