@@ -1,7 +1,6 @@
 package jp.co.cyberagent.kyotohack2018.f.sms.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -33,11 +32,11 @@ class MainActivity : AppCompatActivity() {
         mainActivityStore.changeBottom
                 .doIfNull {
                     if (savedInstanceState == null) {
-                        mainActivityActionCreator.changeFragment(supportFragmentManager,binding.toolBar, R.id.home, false)
+                        mainActivityActionCreator.changeFragment(supportFragmentManager, R.id.home, false)
                     }
                 }
                 .observeNotNull(this) {
-                    mainActivityActionCreator.changeFragment(supportFragmentManager,binding.toolBar, it)
+                    mainActivityActionCreator.changeFragment(supportFragmentManager, it)
                 }
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {

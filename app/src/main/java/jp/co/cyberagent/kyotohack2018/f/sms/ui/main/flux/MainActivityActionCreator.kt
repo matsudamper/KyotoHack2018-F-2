@@ -27,14 +27,7 @@ class MainActivityActionCreator(
         mainActivityDispatcher.dispatch(MainActivityAction.ChangeBottom(position))
     }
 
-    fun changeFragment(manager: FragmentManager, tolbar: Toolbar,@IdRes itemId: Int, isAddToBackStack: Boolean = true) {
-
-        tolbar.setTitle(when (itemId) {
-            R.id.home -> R.string.fragment_home
-            R.id.search -> R.string.fragment_search
-            R.id.my_page -> R.string.fragment_mypage
-            else -> throw IllegalStateException()
-        })
+    fun changeFragment(manager: FragmentManager,@IdRes itemId: Int, isAddToBackStack: Boolean = true) {
 
         when (itemId) {
             R.id.home -> navigate(manager, get<HomeFragment>(), isAddToBackStack)
