@@ -29,8 +29,8 @@ interface SmsService {
     @GET("/api/v1/content/{contentId}/articles/")
     fun getContentArticle(@Path("contentId") id: Long): Flowable<List<Article>>
 
-    @GET("/api/v1/contents/search")
-    fun searchContents(categoryId: List<List<Long>>, page: Int): Single<List<ContentCard>>
+    @GET("/api/v1/categories/contents")
+    fun searchContents(@Query("platforms") platformIds: String, @Query("languages") languageIds: String): Single<List<ContentCard>>
 
     @GET("/api/v1/content/{companyId}")
     fun getContent(@Path("companyId") id: Long): Single<Content>
@@ -53,5 +53,10 @@ interface SmsService {
             "Content-Type: application/json")
     @POST("/api/v1/article")
     fun createArticle(@Body body: Article): Single<Article>
+
+    @Headers("Accept: application/json",
+            "Content-Type: application/json")
+    @POST("/api/v1/browsedHistory")
+    fun createBrowsedHistory(@Body json: JsonObject): Single<JsonObject>
 
 }
