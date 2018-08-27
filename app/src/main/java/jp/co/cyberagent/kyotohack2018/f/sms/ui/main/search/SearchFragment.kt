@@ -16,7 +16,6 @@ class SearchFragment : MainBaseFragment<FragmentSearchBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Toast.makeText(requireContext(), "sarch", Toast.LENGTH_SHORT).show()
     }
 
     private fun setContent(homeContent: HomeContent) {

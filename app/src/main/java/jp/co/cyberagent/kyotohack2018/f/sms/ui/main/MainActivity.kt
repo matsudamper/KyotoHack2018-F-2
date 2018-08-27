@@ -36,9 +36,8 @@ class MainActivity : AppCompatActivity() {
 
         mainActivityStore.changeBottom
                 .doIfNull {
-                    if (savedInstanceState == null) {
-                        mainActivityActionCreator.changeFragment(supportFragmentManager, R.id.home, false)
-                    }
+                    savedInstanceState
+                            ?: mainActivityActionCreator.changeFragment(supportFragmentManager, R.id.home)
                 }
                 .observeNotNull(this) {
                     mainActivityActionCreator.changeFragment(supportFragmentManager, it)
