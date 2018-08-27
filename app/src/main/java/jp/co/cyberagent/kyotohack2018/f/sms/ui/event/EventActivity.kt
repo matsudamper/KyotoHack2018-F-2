@@ -3,13 +3,13 @@ package jp.co.cyberagent.kyotohack2018.f.sms.ui.event
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import jp.co.cyberagent.kyotohack2018.f.android_lib.bundle
+import jp.co.cyberagent.kyotohack2018.f.model.event.Event
 import jp.co.cyberagent.kyotohack2018.f.model.event.EventCard
 import jp.co.cyberagent.kyotohack2018.f.sms.R
 import jp.co.cyberagent.kyotohack2018.f.sms.databinding.ActivityRecyclerBinding
@@ -51,21 +51,22 @@ class EventActivity : AppCompatActivity() {
 
         eventStore.event
                 .doIfNull { eventActionCreator.loadEvent(eventCard.id) }
-                .observeNotNull(this) { item ->
-                    binding.recyclerView.swapAdapter(groupAdapter.apply {
-                        item.contents.forEach {
-                            Log.d("CONTENT_CARD", it.toString())
-                            add(ContentlItem(it) {
-                                appActionCreator.openContent(this@EventActivity, it)
-                            })
-                        }
-                    }, false)
-                }
+                .observeNotNull(this) { addContent(it) }
     }
 
     private fun createView() {
         binding.recyclerView.adapter = groupAdapter.apply {
             add(ThumbnailItem(eventCard.thumbnail))
         }
+    }
+
+    private fun addContent(event: Event) {
+        binding.recyclerView.swapAdapter(groupAdapter.apply {
+            event.contents.forEach {
+                add(ContentlItem(it) {
+                    appActionCreator.openContent(this@EventActivity, it)
+                })
+            }
+        }, false)
     }
 }

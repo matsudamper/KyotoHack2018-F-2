@@ -2,6 +2,7 @@ package jp.co.cyberagent.kyotohack2018.f.sms.ui.event.flux
 
 import android.annotation.SuppressLint
 import io.reactivex.schedulers.Schedulers
+import jp.co.cyberagent.kyotohack2018.f.sms.ext.println
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.EventRepository
 
 class EventActionCreator(
@@ -14,9 +15,10 @@ class EventActionCreator(
         eventRepository.getEvent(id)
                 .subscribeOn(Schedulers.io())
                 .subscribe({
+                    it.println()
                     eventDispatcher.dispatch(EventAction.LoadEvent(it))
                 }, {
-
+                    it.printStackTrace()
                 })
     }
 }

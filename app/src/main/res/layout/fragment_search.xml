@@ -54,6 +54,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="4dp"
                 android:background="@drawable/sheet_drawable"
+                android:focusable="false"
                 app:behavior_peekHeight="@dimen/bottom_sheet_peek_height"
                 app:layout_behavior="@string/bottom_sheet_behavior"
                 tools:layout_behavior="">
@@ -72,14 +73,33 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/vertical_center_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintGuide_percent="0.5"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/filterRecyclerView"
-                    android:layout_width="match_parent"
+                    android:id="@+id/recyclerView_platform"
+                    android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/vertical_center_guideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guide_peek_height" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_language"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:nestedScrollingEnabled="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/recyclerView_platform"
                     app:layout_constraintTop_toTopOf="@+id/guide_peek_height" />
 
 

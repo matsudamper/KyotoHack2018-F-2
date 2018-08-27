@@ -29,6 +29,9 @@ interface SmsService {
     @GET("/api/v1/content/{contentId}/articles/")
     fun getContentArticle(@Path("contentId") id: Long): Flowable<List<Article>>
 
+    @GET("/api/v1/contents/search")
+    fun searchContents(categoryId: List<@JvmSuppressWildcards List<@JvmSuppressWildcards Long>>, page: Int): Single<@JvmSuppressWildcards List<@JvmSuppressWildcards ContentCard>>
+
     @GET("/api/v1/categories/contents")
     fun searchContents(@Query("platforms") platformIds: String, @Query("languages") languageIds: String): Single<List<ContentCard>>
 
