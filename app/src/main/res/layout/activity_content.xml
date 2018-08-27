@@ -5,8 +5,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/background"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background">
 
         <fragment
             android:id="@+id/youtube_fragment"
@@ -32,7 +32,7 @@
                 android:id="@+id/bottom_sheet"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/sheet_drawable"
                 app:behavior_peekHeight="@dimen/bottom_sheet_peek_height"
                 app:layout_behavior="@string/bottom_sheet_behavior"
