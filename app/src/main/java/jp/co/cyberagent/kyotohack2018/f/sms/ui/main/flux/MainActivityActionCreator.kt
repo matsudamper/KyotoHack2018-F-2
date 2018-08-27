@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import io.reactivex.schedulers.Schedulers
 import jp.co.cyberagent.kyotohack2018.f.sms.R
+import jp.co.cyberagent.kyotohack2018.f.sms.repository.AuthRepository
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.HomeRepository
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.home.HomeFragment
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.login.LoginFragment
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.MypageFragment
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.SearchFragment
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.get
@@ -29,7 +31,10 @@ class MainActivityActionCreator(
         when (itemId) {
             R.id.home -> navigate(manager, get<HomeFragment>())
             R.id.search -> navigate(manager, get<SearchFragment>())
-            R.id.my_page -> navigate(manager, get<LoginFragment>())
+            R.id.my_page -> when (AuthRepository.uuid == null || AuthRepository.idToken == null) {
+                true -> navigate(manager, get<LoginFragment>())
+                false -> navigate(manager, get<MypageFragment>())
+            }
             else -> throw IllegalStateException()
         }
     }

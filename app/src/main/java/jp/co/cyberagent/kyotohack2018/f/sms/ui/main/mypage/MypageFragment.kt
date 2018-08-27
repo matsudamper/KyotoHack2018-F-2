@@ -38,7 +38,6 @@ class MypageFragment : MainBaseFragment<FragmentMypageBinding>() {
 
         val isLogined = true
 
-
         if (isLogined.not()) {
             // TODO LGIN
         } else {
@@ -50,11 +49,11 @@ class MypageFragment : MainBaseFragment<FragmentMypageBinding>() {
                 .observeNotNull(this) { createView(it) }
     }
 
-    fun createView(myself: Myself) {
+    private fun createView(myself: Myself) {
         val adapter = GroupAdapter<ViewHolder>().apply {
-            add(MypageHeaderItem({
+            add(MypageHeaderItem {
 
-            }))
+            })
             add(SliderHolder("履歴",
                     myself.posts.map { SliderData(it.title, it.thumbnail, it) }) {
 

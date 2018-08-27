@@ -22,6 +22,9 @@ import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.flux.MainActivityDispatcher
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.flux.MainActivityStore
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.home.HomeFragment
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.login.LoginFragment
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.login.flux.LoginActionCreator
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.login.flux.LoginDispatcher
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.login.flux.LoginStore
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.MypageFragment
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.flux.MypageActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.flux.MypageDispatvher
@@ -44,6 +47,7 @@ val applicationModule = module {
     factory { EventRepository(get()) }
     factory { ContentRepository(get()) }
     factory { SearchRepository(get()) }
+    factory { LoginRepository(get()) }
 
     single { MypageDispatvher() }
     single { MainActivityDispatcher() }
@@ -51,6 +55,7 @@ val applicationModule = module {
     single { EventDispatcher() }
     single { ContentDispatcher() }
     single { SearchDispatcher() }
+    single { LoginDispatcher() }
 }
 
 val mainActivityModule = module(MainActivity::class.moduleName) {
@@ -71,6 +76,9 @@ val mainActivityModule = module(MainActivity::class.moduleName) {
     viewModel { SearchStore(get()) }
 
     single { FirebaseAuth.getInstance() }
+
+    factory { LoginActionCreator(get(), get()) }
+    viewModel { LoginStore(get()) }
 }
 
 val companyActivityModule = module(CompanyActivity::class.moduleName) {
