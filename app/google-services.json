@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "354010538089",
+    "firebase_url": "https://kyotohack2018.firebaseio.com",
+    "project_id": "kyotohack2018",
+    "storage_bucket": "kyotohack2018.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354010538089:android:60ddbc3cb05ae3f4",
+        "android_client_info": {
+          "package_name": "jp.co.cyberagent.kyotohack2018.f.sms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "354010538089-t1nab87mr9a9kljqrcps92jn92v674de.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "jp.co.cyberagent.kyotohack2018.f.sms",
+            "certificate_hash": "e826899c32239ca25cb886309e0902fb0318f191"
+          }
+        },
+        {
+          "client_id": "354010538089-tfth05ac271ltcikbl8ps2njlc2m72gl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCpkG50QKyF47ITwWSd1Xt8ZV-AxsG4CA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "354010538089-tfth05ac271ltcikbl8ps2njlc2m72gl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

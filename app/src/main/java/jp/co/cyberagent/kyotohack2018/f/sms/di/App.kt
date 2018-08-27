@@ -1,6 +1,7 @@
 package jp.co.cyberagent.kyotohack2018.f.sms.di
 
 import android.app.Application
+import com.chibatching.kotpref.Kotpref
 import org.koin.android.ext.android.startKoin
 
 class App : Application() {
@@ -13,5 +14,7 @@ class App : Application() {
                 companyActivityModule,
                 eventActivityModule
         ))
+
+        Kotpref.init(this)
     }
 }
