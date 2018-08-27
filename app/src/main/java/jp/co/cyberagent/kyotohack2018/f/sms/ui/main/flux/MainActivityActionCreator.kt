@@ -18,8 +18,6 @@ class MainActivityActionCreator(
         private val mainActivityDispatcher: MainActivityDispatcher
 ) : KoinComponent {
 
-    var hoge = 0
-
     private val containerId = R.id.container
 
     fun changeBottom(position: Int) {
