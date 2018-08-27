@@ -1,6 +1,7 @@
 package jp.co.cyberagent.kyotohack2018.f.sms.ui.main.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
@@ -33,6 +34,15 @@ class HomeFragment : MainBaseFragment<FragmentHomeBinding>() {
         mainActivityStore.loadHomeContent
                 .doIfNull { mainActivityActionCreator.loadHomeContent() }
                 .observeNotNull(this) {
+                    Log.d("LOG", "1234567")
+
+                    Log.d("LOG_BANNER", "${it.banners}")
+                    Log.d("LOG_EVENTS", "${it.events}")
+                    Log.d("LOG_HISTORIES", "${it.histories}")
+                    Log.d("LOG_NEWCONTENTS", "${it.newContents}")
+                    Log.d("LOG_RANKINGS", "${it.rankings}")
+
+
                     setContent(it)
                 }
     }
@@ -47,7 +57,7 @@ class HomeFragment : MainBaseFragment<FragmentHomeBinding>() {
                 appActionCreator.openEvent(this@HomeFragment.context, it)
             })
             add(SliderHolder(
-                    "新着", homeContent.newContent.map { SliderData(it.title, it.thumbnail, it) }) {
+                    "新着", homeContent.newContents.map { SliderData(it.title, it.thumbnail, it) }) {
                 appActionCreator.openContent(this@HomeFragment.context, it)
             })
             add(SliderHolder(
@@ -55,7 +65,9 @@ class HomeFragment : MainBaseFragment<FragmentHomeBinding>() {
                 appActionCreator.openContent(this@HomeFragment.context, it)
             })
             add(SliderHolder(
-                    "履歴", homeContent.histories.map { SliderData(it.title, it.thumbnail, it) }) {
+                    "履歴", homeContent.histories.map {
+                Log.d("thumbnail", "${it.thumbnail}")
+                SliderData(it.title, it.thumbnail, it) }) {
                 appActionCreator.openContent(this@HomeFragment.context, it)
             })
         }
