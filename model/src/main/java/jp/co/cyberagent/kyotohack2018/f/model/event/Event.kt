@@ -11,5 +11,5 @@ data class Event(
         override val title: String,
         override val description: String,
         override val thumbnail: String,
-        val content: List<ContentCard>
+        val contents: List<ContentCard>
 ) : Serializable, BaseEvent

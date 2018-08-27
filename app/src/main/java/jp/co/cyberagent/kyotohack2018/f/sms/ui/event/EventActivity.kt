@@ -53,7 +53,7 @@ class EventActivity : AppCompatActivity() {
                 .doIfNull { eventActionCreator.loadEvent(eventCard.id) }
                 .observeNotNull(this) { item ->
                     binding.recyclerView.swapAdapter(groupAdapter.apply {
-                        item.content.forEach {
+                        item.contents.forEach {
                             Log.d("CONTENT_CARD", it.toString())
                             add(ContentlItem(it) {
                                 appActionCreator.openContent(this@EventActivity, it)
