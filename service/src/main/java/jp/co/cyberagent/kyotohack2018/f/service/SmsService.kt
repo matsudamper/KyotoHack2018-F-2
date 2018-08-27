@@ -1,19 +1,17 @@
 package jp.co.cyberagent.kyotohack2018.f.service
 
+import com.google.gson.JsonObject
 import io.reactivex.Flowable
 import io.reactivex.Single
 import jp.co.cyberagent.kyotohack2018.f.model.Article
 import jp.co.cyberagent.kyotohack2018.f.model.HomeContent
 import jp.co.cyberagent.kyotohack2018.f.model.Myself
 import jp.co.cyberagent.kyotohack2018.f.model.category.Category
-import jp.co.cyberagent.kyotohack2018.f.model.category.RootCategory
 import jp.co.cyberagent.kyotohack2018.f.model.company.Company
 import jp.co.cyberagent.kyotohack2018.f.model.content.Content
 import jp.co.cyberagent.kyotohack2018.f.model.content.ContentCard
 import jp.co.cyberagent.kyotohack2018.f.model.event.Event
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface SmsService {
 
@@ -25,23 +23,34 @@ interface SmsService {
     fun getHomeContent(): Single<HomeContent>
 
     @GET("/api/v1/categories")
-    fun getCategories(): Single<List<RootCategory>>
+    fun getCategories(): Single<Map<String, List<Category>>>
 
-    @GET("/api/v1/content_article")
-    fun getContentArticle(page: Long = 0): Flowable<List<Article>>
+    @GET("/api/v1/content/{contentId}/articles/")
+    fun getContentArticle(@Path("contentId") id: Long): Flowable<List<Article>>
 
     @GET("/api/v1/contents/search")
     fun searchContents(categoryId: List<List<Long>>, page: Int): Single<List<ContentCard>>
 
-    @GET("/api/v1/content/{id}")
-    fun getContent(@Path("id") id: Long): Single<Content>
+    @GET("/api/v1/content/{companyId}")
+    fun getContent(@Path("companyId") id: Long): Single<Content>
 
-    @GET("/api/v1/company/{id}")
-    fun getCompany(@Path("id") id: Long): Single<Company>
+    @GET("/api/v1/company/{companyId}")
+    fun getCompany(@Path("companyId") id: Long): Single<Company>
 
     @GET("/api/v1/event/{eventId}")
     fun getEvent(@Path("eventId") id: Long): Single<Event>
 
     @GET("/my_user_info")
     fun getMyself(): Flowable<Myself>
+
+    @Headers("Accept: application/json",
+            "Content-Type: application/json")
+    @POST("/api/v1/user")
+    fun createUser(@Body body: JsonObject): Single<JsonObject>
+
+    @Headers("Accept: application/json",
+            "Content-Type: application/json")
+    @POST("/api/v1/article")
+    fun createArticle(@Body body: JsonObject): Single<JsonObject>
+
 }
