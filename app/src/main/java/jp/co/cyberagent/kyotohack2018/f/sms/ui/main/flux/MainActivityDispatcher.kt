@@ -17,7 +17,6 @@ class MainActivityDispatcher : Dispatcher {
     val onLoadHomeContent = dispatcherLoadHomeContent.toFlowable()
     val onLoadMyself = dispatcherLoadMyself.toFlowable()
 
-
     override fun <T> dispatch(action: Action<T>) {
         when (action) {
             is MainActivityAction.ChangeBottom -> dispatcherChangeBottom.onNext(action)
