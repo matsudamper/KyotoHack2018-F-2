@@ -10,8 +10,11 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="@dimen/card_list_margin"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="@dimen/card_list_margin"
+            android:background="@color/cardColor"
             android:elevation="2dp"
             app:cardCornerRadius="@dimen/list_card_radius"
             app:layout_constraintBottom_toBottomOf="parent"

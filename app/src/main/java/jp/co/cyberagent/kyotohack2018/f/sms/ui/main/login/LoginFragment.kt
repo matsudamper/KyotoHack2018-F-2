@@ -49,11 +49,6 @@ class LoginFragment : MainBaseFragment<FragmentLoginBinding>() {
 
                 firebaseAuthWithGoogle(account)
                 Log.d("LOG", "Result")
-                Log.d("LOG", "$account")
-                Log.d("LOG", "${account.account}")
-                Log.d("LOG", "${account.email}")
-                Log.d("LOG", "${account.id}")
-                Log.d("LOG", "${account.idToken}")
                 Log.d("LOG", "${account.toJson()}")
             } catch (e: ApiException) {
                 e.printStackTrace()

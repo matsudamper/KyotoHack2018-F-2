@@ -22,8 +22,8 @@ class HeaderPager : PagerAdapter() {
 
         return ImageView(container.context).apply {
             layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
-
             loadUrl(item.thumbnail)
+            setOnClickListener { onItemSelectListener?.invoke(item) }
         }.also { container.addView(it) }
     }
 
@@ -36,4 +36,6 @@ class HeaderPager : PagerAdapter() {
     }
 
     override fun getCount(): Int = items.size
+
+    var onItemSelectListener: ((ContentCard) -> Unit)? = null
 }
