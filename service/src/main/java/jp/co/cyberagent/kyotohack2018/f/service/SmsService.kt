@@ -1,5 +1,6 @@
 package jp.co.cyberagent.kyotohack2018.f.service
 
+import com.google.gson.JsonObject
 import io.reactivex.Flowable
 import io.reactivex.Single
 import jp.co.cyberagent.kyotohack2018.f.model.Article
@@ -10,9 +11,7 @@ import jp.co.cyberagent.kyotohack2018.f.model.company.Company
 import jp.co.cyberagent.kyotohack2018.f.model.content.Content
 import jp.co.cyberagent.kyotohack2018.f.model.content.ContentCard
 import jp.co.cyberagent.kyotohack2018.f.model.event.Event
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface SmsService {
 
@@ -24,7 +23,7 @@ interface SmsService {
     fun getHomeContent(): Single<HomeContent>
 
     @GET("/api/v1/categories")
-    fun getCategories(): Single<List<List<Category>>>
+    fun getCategories(): Single<Map<String, List<Category>>>
 
     @GET("/api/v1/content/{contentId}/articles/")
     fun getContentArticle(@Path("contentId") id: Long): Flowable<List<Article>>
@@ -43,4 +42,15 @@ interface SmsService {
 
     @GET("/my_user_info")
     fun getMyself(): Flowable<Myself>
+
+    @Headers("Accept: application/json",
+            "Content-Type: application/json")
+    @POST("/api/v1/user")
+    fun createUser(@Body body: JsonObject): Single<JsonObject>
+
+    @Headers("Accept: application/json",
+            "Content-Type: application/json")
+    @POST("/api/v1/article")
+    fun createArticle(@Body body: JsonObject): Single<JsonObject>
+
 }
