@@ -2,6 +2,7 @@ package jp.co.cyberagent.kyotohack2018.f.service.sms
 
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
+import jp.co.cyberagent.kyotohack2018.f.service.SmsService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -19,8 +20,13 @@ object RetrofitServiceGenrator {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
 
-    private fun createApiRetrofit(): Retrofit =
-            createRetrofit("")
+
+    private fun createSmsRetrofit(): Retrofit =
+            createRetrofit(SmsService.BASE_URL)
+
+    // 呼び出し対象のAPIをインスタンス化
+    fun createSmsService(): SmsService = createSmsRetrofit().create(SmsService::class.java)
+
 
     // Gsonのインスタンス化
     private fun createGson(): GsonConverterFactory {

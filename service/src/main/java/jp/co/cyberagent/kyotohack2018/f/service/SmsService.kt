@@ -5,41 +5,43 @@ import io.reactivex.Single
 import jp.co.cyberagent.kyotohack2018.f.model.Article
 import jp.co.cyberagent.kyotohack2018.f.model.HomeContent
 import jp.co.cyberagent.kyotohack2018.f.model.Myself
+import jp.co.cyberagent.kyotohack2018.f.model.category.Category
 import jp.co.cyberagent.kyotohack2018.f.model.category.RootCategory
 import jp.co.cyberagent.kyotohack2018.f.model.company.Company
 import jp.co.cyberagent.kyotohack2018.f.model.content.Content
 import jp.co.cyberagent.kyotohack2018.f.model.content.ContentCard
 import jp.co.cyberagent.kyotohack2018.f.model.event.Event
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface SmsService {
 
     companion object {
-        const val BASE_URL = "https://f-api.kyotohack.com"
+        const val BASE_URL = "https://f-api.kyotohack.com/"
     }
 
-    @GET("/home_content")
+    @GET("/api/v1/home_content")
     fun getHomeContent(): Single<HomeContent>
 
-    @GET("/categories")
+    @GET("/api/v1/categories")
     fun getCategories(): Single<List<RootCategory>>
 
-    @GET("/content_article")
+    @GET("/api/v1/content_article")
     fun getContentArticle(page: Long = 0): Flowable<List<Article>>
+
+    @GET("/api/v1/contents/search")
+    fun searchContents(categoryId: List<List<Long>>, page: Int): Single<List<ContentCard>>
+
+    @GET("/api/v1/content/{id}")
+    fun getContent(@Query("id") id: Long): Single<Content>
+
+    @GET("/api/v1/company/{id}")
+    fun getCompany(@Query("id") id: Long): Single<Company>
+
+    @GET("/api/v1/event/{eventId}")
+    fun getEvent(@Path("eventId") id: Long): Single<Event>
 
     @GET("/my_user_info")
     fun getMyself(): Flowable<Myself>
-
-    @GET("/content")
-    fun getContent(@Query("id") id: Long): Single<Content>
-
-    @GET("/company")
-    fun getCompany(@Query("id") id: Long): Single<Company>
-
-    @GET("/event")
-    fun getEvent(@Query("id") id: Long): Single<Event>
-
-    @GET("/search")
-    fun searchContentCard(categoryId: List<List<Long>>, page: Int): Single<List<ContentCard>>
 }

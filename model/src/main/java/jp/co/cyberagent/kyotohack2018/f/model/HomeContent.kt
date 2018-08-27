@@ -12,6 +12,6 @@ data class HomeContent(
         val banners: List<ContentCard>,// おすすめしたいLT単体（ここは決め打ち）
         val events: List<EventCard>,// イベント
         val rankings: List<ContentCard>,// 今人気のLT単体(最近)
-        val newContent: List<ContentCard>,// 新着イベント
+        val newContents: List<ContentCard>,// 新着イベント
         val histories: List<ContentCard>// 最近見たLT
 ) : Serializable
