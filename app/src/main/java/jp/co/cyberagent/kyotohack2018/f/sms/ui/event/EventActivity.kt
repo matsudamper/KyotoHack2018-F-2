@@ -11,7 +11,7 @@ import com.xwray.groupie.ViewHolder
 import jp.co.cyberagent.kyotohack2018.f.android_lib.bundle
 import jp.co.cyberagent.kyotohack2018.f.model.event.EventCard
 import jp.co.cyberagent.kyotohack2018.f.sms.R
-import jp.co.cyberagent.kyotohack2018.f.sms.databinding.ActivitySubBinding
+import jp.co.cyberagent.kyotohack2018.f.sms.databinding.ActivityRecyclerBinding
 import jp.co.cyberagent.kyotohack2018.f.sms.ext.doIfNull
 import jp.co.cyberagent.kyotohack2018.f.sms.ext.observeNotNull
 import jp.co.cyberagent.kyotohack2018.f.sms.flux.app.AppActionCreator
@@ -36,7 +36,7 @@ class EventActivity : AppCompatActivity() {
     }
 
     private val binding by lazy {
-        DataBindingUtil.inflate<ActivitySubBinding>(LayoutInflater.from(this), R.layout.activity_sub, null, false)
+        DataBindingUtil.inflate<ActivityRecyclerBinding>(LayoutInflater.from(this), R.layout.activity_recycler, null, false)
     }
 
     private val groupAdapter = GroupAdapter<ViewHolder>()
