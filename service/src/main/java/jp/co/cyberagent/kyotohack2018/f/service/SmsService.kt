@@ -32,6 +32,9 @@ interface SmsService {
     @GET("/api/v1/contents/search")
     fun searchContents(categoryId: List<@JvmSuppressWildcards List<@JvmSuppressWildcards Long>>, page: Int): Single<@JvmSuppressWildcards List<@JvmSuppressWildcards ContentCard>>
 
+    @GET("/api/v1/categories/contents")
+    fun searchContents(@Query("platforms") platformIds: String, @Query("languages") languageIds: String): Single<List<ContentCard>>
+
     @GET("/api/v1/content/{companyId}")
     fun getContent(@Path("companyId") id: Long): Single<Content>
 
@@ -53,5 +56,10 @@ interface SmsService {
             "Content-Type: application/json")
     @POST("/api/v1/article")
     fun createArticle(@Body body: Article): Single<Article>
+
+    @Headers("Accept: application/json",
+            "Content-Type: application/json")
+    @POST("/api/v1/browsedHistory")
+    fun createBrowsedHistory(@Body json: JsonObject): Single<JsonObject>
 
 }
