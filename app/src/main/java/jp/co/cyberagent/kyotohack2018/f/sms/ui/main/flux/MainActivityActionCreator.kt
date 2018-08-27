@@ -9,6 +9,7 @@ import io.reactivex.schedulers.Schedulers
 import jp.co.cyberagent.kyotohack2018.f.sms.R
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.HomeRepository
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.home.HomeFragment
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.login.LoginFragment
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.MypageFragment
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.SearchFragment
 import org.koin.standalone.KoinComponent
@@ -32,7 +33,7 @@ class MainActivityActionCreator(
         when (itemId) {
             R.id.home -> navigate(manager, get<HomeFragment>(), isAddToBackStack)
             R.id.search -> navigate(manager, get<SearchFragment>())
-            R.id.my_page -> navigate(manager, get<MypageFragment>())
+            R.id.my_page -> navigate(manager, get<LoginFragment>())
             else -> throw IllegalStateException()
         }
     }
