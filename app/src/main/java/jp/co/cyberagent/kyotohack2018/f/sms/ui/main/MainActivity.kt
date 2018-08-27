@@ -19,6 +19,7 @@ import org.koin.androidx.scope.ext.android.scopedWith
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.dsl.path.moduleName
 
+
 class MainActivity : AppCompatActivity() {
 
     private val mainActivityActionCreator: MainActivityActionCreator by inject()

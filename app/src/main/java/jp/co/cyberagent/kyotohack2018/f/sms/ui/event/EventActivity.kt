@@ -3,6 +3,7 @@ package jp.co.cyberagent.kyotohack2018.f.sms.ui.event
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -53,6 +54,7 @@ class EventActivity : AppCompatActivity() {
                 .observeNotNull(this) { item ->
                     binding.recyclerView.swapAdapter(groupAdapter.apply {
                         item.content.forEach {
+                            Log.d("CONTENT_CARD", it.toString())
                             add(ContentlItem(it) {
                                 appActionCreator.openContent(this@EventActivity, it)
                             })

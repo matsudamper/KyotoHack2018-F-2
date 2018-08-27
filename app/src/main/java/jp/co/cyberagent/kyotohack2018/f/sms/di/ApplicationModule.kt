@@ -1,6 +1,6 @@
 package jp.co.cyberagent.kyotohack2018.f.sms.di
 
-import jp.co.cyberagent.kyotohack2018.f.service.SmsService
+import com.google.firebase.auth.FirebaseAuth
 import jp.co.cyberagent.kyotohack2018.f.service.sms.RetrofitServiceGenrator
 import jp.co.cyberagent.kyotohack2018.f.sms.flux.app.AppActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.CompanyRepository
@@ -19,6 +19,7 @@ import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.flux.MainActivityActionCreat
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.flux.MainActivityDispatcher
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.flux.MainActivityStore
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.home.HomeFragment
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.login.LoginFragment
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.MypageFragment
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.flux.MypageActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.flux.MypageDispatvher
@@ -49,6 +50,7 @@ val mainActivityModule = module(MainActivity::class.moduleName) {
     factory { HomeFragment() }
     factory { SearchFragment() }
     factory { MypageFragment() }
+    factory { LoginFragment() }
 
     // Flux
     factory { MainActivityActionCreator(get(), get()) }
@@ -56,6 +58,8 @@ val mainActivityModule = module(MainActivity::class.moduleName) {
 
     factory { MypageActionCreator(get()) }
     viewModel { MypageStore(get()) }
+
+    single { FirebaseAuth.getInstance() }
 }
 
 val companyActivityModule = module(CompanyActivity::class.moduleName) {
