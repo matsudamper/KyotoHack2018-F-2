@@ -1,13 +1,9 @@
 package jp.co.cyberagent.kyotohack2018.f.sms.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import jp.co.cyberagent.kyotohack2018.f.service.sms.RetrofitServiceGenrator
 import jp.co.cyberagent.kyotohack2018.f.sms.R
 import jp.co.cyberagent.kyotohack2018.f.sms.databinding.ActivityMainBinding
 import jp.co.cyberagent.kyotohack2018.f.sms.ext.doIfNull
@@ -36,9 +32,8 @@ class MainActivity : AppCompatActivity() {
 
         mainActivityStore.changeBottom
                 .doIfNull {
-                    if (savedInstanceState == null) {
-                        mainActivityActionCreator.changeFragment(supportFragmentManager, R.id.home, false)
-                    }
+                    savedInstanceState
+                            ?: mainActivityActionCreator.changeFragment(supportFragmentManager, R.id.home)
                 }
                 .observeNotNull(this) {
                     mainActivityActionCreator.changeFragment(supportFragmentManager, it)

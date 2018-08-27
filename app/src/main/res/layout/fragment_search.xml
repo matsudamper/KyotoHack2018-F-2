@@ -58,6 +58,21 @@
                 app:layout_behavior="@string/bottom_sheet_behavior"
                 tools:layout_behavior="">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/sheet_round_width_drawable"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="タグで絞り込む"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/list_text_size"
+                    app:layout_constraintBottom_toBottomOf="@+id/guide_peek_height"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/filterRecyclerView"
                     android:layout_width="match_parent"
@@ -67,19 +82,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/guide_peek_height" />
 
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toTopOf="@+id/guide_peek_height"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/header_shadow"
-                    tools:text="タイトル" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guide_peek_height"
