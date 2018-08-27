@@ -39,7 +39,9 @@ class HomeFragment : MainBaseFragment<FragmentHomeBinding>() {
 
     private fun setContent(homeContent: HomeContent) {
         binding.recyclerView.adapter = GroupAdapter<ViewHolder>().apply {
-            add(HeaderSlider(homeContent.banners))
+            add(HeaderSlider(homeContent.banners) {
+                appActionCreator.openContent(this@HomeFragment.context, it)
+            })
             add(SliderHolder(
                     "イベント", homeContent.events.map { SliderData(it.title, it.thumbnail, it) }) {
                 appActionCreator.openEvent(this@HomeFragment.context, it)

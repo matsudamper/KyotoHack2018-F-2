@@ -1,28 +1,31 @@
 package jp.co.cyberagent.kyotohack2018.f.sms.ui.main.home.item
 
-import android.util.Log
 import androidx.viewpager.widget.ViewPager
 import com.xwray.groupie.databinding.BindableItem
 import jp.co.cyberagent.kyotohack2018.f.model.content.ContentCard
 import jp.co.cyberagent.kyotohack2018.f.sms.R
 import jp.co.cyberagent.kyotohack2018.f.sms.databinding.ViewHeaderSliderBinding
-import jp.co.cyberagent.kyotohack2018.f.sms.ext.println
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.content.cast
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.view.HeaderPager
 
 
 class HeaderSlider(
-        val header: List<ContentCard>
+        private val header: List<ContentCard>,
+        private val onClick: ((ContentCard) -> Unit)
 ) : BindableItem<ViewHeaderSliderBinding>() {
 
-    val adapter by lazy { HeaderPager().apply { setItem(header) } }
+    private val adapter by lazy {
+        HeaderPager().apply {
+            setItem(header)
+            onItemSelectListener = { onClick(it) }
+        }
+    }
 
     override fun getLayout() = R.layout.view_header_slider
 
     override fun bind(viewHolder: ViewHeaderSliderBinding, p1: Int) {
 
         viewHolder.viewPager.adapter = adapter
-
         viewHolder.viewPager.postDelayed(getPageSlideAction(viewHolder.viewPager), 4000)
         viewHolder.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
