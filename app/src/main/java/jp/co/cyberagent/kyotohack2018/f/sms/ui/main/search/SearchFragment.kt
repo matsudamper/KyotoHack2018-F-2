@@ -7,23 +7,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
 import jp.co.cyberagent.kyotohack2018.f.model.HomeContent
 import jp.co.cyberagent.kyotohack2018.f.sms.R
-import jp.co.cyberagent.kyotohack2018.f.sms.databinding.FragmentHomeBinding
-import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.home.item.HeaderSlider
+import jp.co.cyberagent.kyotohack2018.f.sms.databinding.FragmentSearchBinding
 
-class SarchFragment : Fragment() {
+class SearchFragment : Fragment() {
 
-    lateinit var binding: FragmentHomeBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    lateinit var binding: FragmentSearchBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(LayoutInflater.from(requireContext()), R.layout.fragment_home, container, false)
+        binding = DataBindingUtil.inflate(LayoutInflater.from(requireContext()), R.layout.fragment_search, container, false)
         return binding.root
     }
 
@@ -34,8 +27,8 @@ class SarchFragment : Fragment() {
     }
 
     private fun setContent(homeContent: HomeContent) {
-        binding.recyclerView.adapter = GroupAdapter<ViewHolder>().apply {
-            add(HeaderSlider(homeContent.banners))
-        }
+//        binding.recyclerView.adapter = GroupAdapter<ViewHolder>().apply {
+//            add(HeaderSlider(homeContent.banners))
+//        }
     }
 }

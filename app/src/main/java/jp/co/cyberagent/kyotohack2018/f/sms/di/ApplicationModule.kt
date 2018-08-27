@@ -23,7 +23,7 @@ import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.MypageFragment
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.flux.MypageActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.flux.MypageDispatvher
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.flux.MypageStore
-import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.SarchFragment
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.SearchFragment
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
@@ -59,7 +59,7 @@ val applicationModule = module {
 val mainActivityModule = module(MainActivity::class.moduleName) {
     // Fragment
     factory { HomeFragment() }
-    factory { SarchFragment() }
+    factory { SearchFragment() }
     factory { MypageFragment() }
 
     // Flux

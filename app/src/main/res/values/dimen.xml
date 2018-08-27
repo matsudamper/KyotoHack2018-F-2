@@ -10,4 +10,6 @@
 
     <dimen name="list_text_size_title">25dp</dimen>
     <dimen name="list_text_size">15dp</dimen>
+
+    <dimen name="bottom_sheet_peek_height">48dp</dimen>
 </resources>
