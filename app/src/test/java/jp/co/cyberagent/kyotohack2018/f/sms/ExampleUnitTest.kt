@@ -19,25 +19,5 @@ class ExampleUnitTest {
         assertEquals(4, 2 + 2)
     }
 
-    @Test
-    fun dataFlowExample() {
-
-        // HomeContentのとき
-        RetrofitServiceGenrator.createSmsService()
-                .getHomeContent()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnError { Log.d("TAG", it.message) }
-                .doFinally { Log.d("TAG", "On Finally") }
-                .subscribe { homeContent, t ->
-                    Log.d("Tag", "$homeContent")
-                    // TODO ここで何かしらの処理をする
-                }
-
-
-        RetrofitServiceGenrator.createSmsService()
-                .getCategories()
-
-
-    }
+   
 }
