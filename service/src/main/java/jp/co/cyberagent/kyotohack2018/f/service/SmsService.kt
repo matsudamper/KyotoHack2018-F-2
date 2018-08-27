@@ -32,11 +32,11 @@ interface SmsService {
     @GET("/api/v1/contents/search")
     fun searchContents(categoryId: List<List<Long>>, page: Int): Single<List<ContentCard>>
 
-    @GET("/api/v1/content/{contentId}")
-    fun getContent(@Query("contentId") id: Long): Single<Content>
+    @GET("/api/v1/content/{companyId}")
+    fun getContent(@Path("companyId") id: Long): Single<Content>
 
     @GET("/api/v1/company/{companyId}")
-    fun getCompany(@Query("companyId") id: Long): Single<Company>
+    fun getCompany(@Path("companyId") id: Long): Single<Company>
 
     @GET("/api/v1/event/{eventId}")
     fun getEvent(@Path("eventId") id: Long): Single<Event>
