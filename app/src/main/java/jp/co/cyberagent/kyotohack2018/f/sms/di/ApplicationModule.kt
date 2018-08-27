@@ -3,10 +3,7 @@ package jp.co.cyberagent.kyotohack2018.f.sms.di
 import com.google.firebase.auth.FirebaseAuth
 import jp.co.cyberagent.kyotohack2018.f.service.sms.RetrofitServiceGenerator
 import jp.co.cyberagent.kyotohack2018.f.sms.flux.app.AppActionCreator
-import jp.co.cyberagent.kyotohack2018.f.sms.repository.CompanyRepository
-import jp.co.cyberagent.kyotohack2018.f.sms.repository.ContentRepository
-import jp.co.cyberagent.kyotohack2018.f.sms.repository.EventRepository
-import jp.co.cyberagent.kyotohack2018.f.sms.repository.HomeRepository
+import jp.co.cyberagent.kyotohack2018.f.sms.repository.*
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.company.CompanyActivity
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.company.flux.CompanyActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.company.flux.CompanyDispatcher
@@ -30,6 +27,9 @@ import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.flux.MypageActionCrea
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.flux.MypageDispatvher
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.mypage.flux.MypageStore
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.SearchFragment
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.flux.SearchActionCreator
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.flux.SearchDispatcher
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.flux.SearchStore
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
@@ -43,12 +43,14 @@ val applicationModule = module {
     factory { CompanyRepository(get()) }
     factory { EventRepository(get()) }
     factory { ContentRepository(get()) }
+    factory { SearchRepository(get()) }
 
     single { MypageDispatvher() }
     single { MainActivityDispatcher() }
     single { CompanyDispatcher() }
     single { EventDispatcher() }
     single { ContentDispatcher() }
+    single { SearchDispatcher() }
 }
 
 val mainActivityModule = module(MainActivity::class.moduleName) {
@@ -64,6 +66,9 @@ val mainActivityModule = module(MainActivity::class.moduleName) {
 
     factory { MypageActionCreator(get()) }
     viewModel { MypageStore(get()) }
+
+    factory { SearchActionCreator(get(), get()) }
+    viewModel { SearchStore(get()) }
 
     single { FirebaseAuth.getInstance() }
 }
