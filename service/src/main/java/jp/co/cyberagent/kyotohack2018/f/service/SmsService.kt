@@ -6,7 +6,6 @@ import jp.co.cyberagent.kyotohack2018.f.model.Article
 import jp.co.cyberagent.kyotohack2018.f.model.HomeContent
 import jp.co.cyberagent.kyotohack2018.f.model.Myself
 import jp.co.cyberagent.kyotohack2018.f.model.category.Category
-import jp.co.cyberagent.kyotohack2018.f.model.category.RootCategory
 import jp.co.cyberagent.kyotohack2018.f.model.company.Company
 import jp.co.cyberagent.kyotohack2018.f.model.content.Content
 import jp.co.cyberagent.kyotohack2018.f.model.content.ContentCard
@@ -25,7 +24,7 @@ interface SmsService {
     fun getHomeContent(): Single<HomeContent>
 
     @GET("/api/v1/categories")
-    fun getCategories(): Single<List<RootCategory>>
+    fun getCategories(): Single<List<List<Category>>>
 
     @GET("/api/v1/content/{contentId}/articles/")
     fun getContentArticle(@Path("contentId") id: Long): Flowable<List<Article>>
