@@ -1,1 +1,1 @@
-include ':app', ':model', ':service', ':player', ':app_company', ':android_lib'
+include ':app', ':model', ':service', ':android_lib'
