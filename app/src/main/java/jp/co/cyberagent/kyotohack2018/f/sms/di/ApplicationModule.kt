@@ -1,7 +1,7 @@
 package jp.co.cyberagent.kyotohack2018.f.sms.di
 
 import com.google.firebase.auth.FirebaseAuth
-import jp.co.cyberagent.kyotohack2018.f.service.sms.RetrofitServiceGenrator
+import jp.co.cyberagent.kyotohack2018.f.service.sms.RetrofitServiceGenerator
 import jp.co.cyberagent.kyotohack2018.f.sms.flux.app.AppActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.CompanyRepository
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.EventRepository
@@ -32,7 +32,7 @@ import org.koin.dsl.path.moduleName
 
 val applicationModule = module {
     single { OkHttpClient.Builder().build() }
-    single { RetrofitServiceGenrator.createSmsService() }
+    single { RetrofitServiceGenerator.createSmsService() }
 //    single { SmsMockService() } bind SmsService::class
     single { AppActionCreator() }
     factory { HomeRepository(get()) }
