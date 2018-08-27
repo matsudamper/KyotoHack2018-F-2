@@ -34,10 +34,10 @@ interface SmsService {
     fun searchContents(categoryId: List<List<Long>>, page: Int): Single<List<ContentCard>>
 
     @GET("/api/v1/content/{id}")
-    fun getContent(@Query("id") id: Long): Single<Content>
+    fun getContent(@Path("id") id: Long): Single<Content>
 
     @GET("/api/v1/company/{id}")
-    fun getCompany(@Query("id") id: Long): Single<Company>
+    fun getCompany(@Path("id") id: Long): Single<Company>
 
     @GET("/api/v1/event/{eventId}")
     fun getEvent(@Path("eventId") id: Long): Single<Event>
