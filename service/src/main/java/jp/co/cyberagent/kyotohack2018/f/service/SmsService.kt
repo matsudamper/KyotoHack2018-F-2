@@ -11,6 +11,7 @@ import jp.co.cyberagent.kyotohack2018.f.model.company.Company
 import jp.co.cyberagent.kyotohack2018.f.model.content.Content
 import jp.co.cyberagent.kyotohack2018.f.model.content.ContentCard
 import jp.co.cyberagent.kyotohack2018.f.model.event.Event
+import jp.co.cyberagent.kyotohack2018.f.service.sms.RegistUser
 import retrofit2.http.*
 
 interface SmsService {
@@ -46,11 +47,11 @@ interface SmsService {
     @Headers("Accept: application/json",
             "Content-Type: application/json")
     @POST("/api/v1/user")
-    fun createUser(@Body body: JsonObject): Single<JsonObject>
+    fun createUser(@Body user: RegistUser): Single<RegistUser>
 
     @Headers("Accept: application/json",
             "Content-Type: application/json")
     @POST("/api/v1/article")
-    fun createArticle(@Body body: JsonObject): Single<JsonObject>
+    fun createArticle(@Body body: Article): Single<Article>
 
 }
