@@ -7,7 +7,7 @@ import jp.co.cyberagent.kyotohack2018.f.sms.R
 import jp.co.cyberagent.kyotohack2018.f.sms.databinding.ViewContentSliderHolderBinding
 
 
-data class SliderHolder<T>(
+data class SliderHolder<T : Any?>(
         private val title: String,
         private val sliderItemList: List<SliderData<T>>,
         private val onClickListener: ((T) -> Unit)

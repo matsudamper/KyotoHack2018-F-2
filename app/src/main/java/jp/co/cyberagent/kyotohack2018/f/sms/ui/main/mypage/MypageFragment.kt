@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.view.View
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import jp.co.cyberagent.kyotohack2018.f.model.Article
 import jp.co.cyberagent.kyotohack2018.f.model.Myself
+import jp.co.cyberagent.kyotohack2018.f.sms.Config
 import jp.co.cyberagent.kyotohack2018.f.sms.R
 import jp.co.cyberagent.kyotohack2018.f.sms.databinding.FragmentMypageBinding
 import jp.co.cyberagent.kyotohack2018.f.sms.ext.doIfNull
 import jp.co.cyberagent.kyotohack2018.f.sms.ext.observeNotNull
+import jp.co.cyberagent.kyotohack2018.f.sms.ext.println
+import jp.co.cyberagent.kyotohack2018.f.sms.repository.AuthRepository
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.MainBaseFragment
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.flux.MainActivityActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.flux.MainActivityStore
@@ -37,18 +41,22 @@ class MypageFragment : MainBaseFragment<FragmentMypageBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         mainActivityStore.loadMyself
-                .doIfNull { mainActivityActionCreator.loadMyself() }
+                .doIfNull { mainActivityActionCreator.loadArticle(AuthRepository.uuid!!) }
                 .observeNotNull(this) { createView(it) }
     }
 
-    private fun createView(myself: Myself) {
+    private fun createView(articles: List<Article>) {
         val adapter = GroupAdapter<ViewHolder>().apply {
             add(MypageHeaderItem {
 
             })
-            add(SliderHolder("履歴",
-                    myself.posts.map { SliderData(it.title, it.thumbnail, it) }) {
-
+            "==========".println()
+            articles.println()
+            articles.forEach {
+                it.println()
+            }
+            add(SliderHolder("投稿した",
+                    articles.map { SliderData(it.title, it.thumbnail, it) }) {
             })
         }
 

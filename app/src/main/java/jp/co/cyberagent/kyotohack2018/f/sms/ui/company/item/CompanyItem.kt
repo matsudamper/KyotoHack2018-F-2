@@ -7,7 +7,8 @@ import jp.co.cyberagent.kyotohack2018.f.sms.databinding.ViewCompanyItemBinding
 
 class CompanyItem(
         @DrawableRes val res: Int,
-        val text: String
+        val text: String,
+        val onClick : (() -> Unit)? = null
 ) : BindableItem<ViewCompanyItemBinding>() {
 
     override fun getLayout() = R.layout.view_company_item
@@ -15,5 +16,9 @@ class CompanyItem(
     override fun bind(viewHolder: ViewCompanyItemBinding, p1: Int) {
         viewHolder.imageView.setImageResource(res)
         viewHolder.title.text = text
+
+        viewHolder.root.setOnClickListener {
+            onClick?.invoke()
+        }
     }
 }
