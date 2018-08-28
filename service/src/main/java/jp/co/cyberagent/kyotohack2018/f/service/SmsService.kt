@@ -44,6 +44,9 @@ interface SmsService {
     @GET("/api/v1/event/{eventId}")
     fun getEvent(@Path("eventId") id: Long): Single<Event>
 
+    @GET("/my_user_info")
+    fun getMyself(): Flowable<Myself>
+
     @Headers("Accept: application/json",
             "Content-Type: application/json")
     @POST("/api/v1/user")

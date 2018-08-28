@@ -36,14 +36,6 @@ class MypageFragment : MainBaseFragment<FragmentMypageBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val isLogined = true
-
-        if (isLogined.not()) {
-            // TODO LGIN
-        } else {
-
-        }
-
         mainActivityStore.loadMyself
                 .doIfNull { mainActivityActionCreator.loadMyself() }
                 .observeNotNull(this) { createView(it) }

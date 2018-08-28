@@ -4,6 +4,10 @@ import com.google.firebase.auth.FirebaseAuth
 import jp.co.cyberagent.kyotohack2018.f.service.sms.RetrofitServiceGenerator
 import jp.co.cyberagent.kyotohack2018.f.sms.flux.app.AppActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.*
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.artcle.ArticleActivity
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.artcle.flux.ArticleActionCreator
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.artcle.flux.ArticleDispatcher
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.artcle.flux.ArticleStore
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.company.CompanyActivity
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.company.flux.CompanyActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.company.flux.CompanyDispatcher
@@ -48,6 +52,7 @@ val applicationModule = module {
     factory { ContentRepository(get()) }
     factory { SearchRepository(get()) }
     factory { LoginRepository(get()) }
+    factory { ArticleRepository(get()) }
 
     single { MypageDispatvher() }
     single { MainActivityDispatcher() }
@@ -56,6 +61,7 @@ val applicationModule = module {
     single { ContentDispatcher() }
     single { SearchDispatcher() }
     single { LoginDispatcher() }
+    single { ArticleDispatcher() }
 }
 
 val mainActivityModule = module(MainActivity::class.moduleName) {
@@ -94,4 +100,9 @@ val eventActivityModule = module(EventActivity::class.moduleName) {
 val contentActivityModule = module(ContentActivity::class.moduleName) {
     factory { ContentActionCreator(get(), get()) }
     viewModel { ContentStore(get()) }
+}
+
+val articleActivityModule = module(ArticleActivity::class.moduleName) {
+    factory { ArticleActionCreator(get(), get()) }
+    viewModel { ArticleStore(get()) }
 }
