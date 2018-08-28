@@ -37,6 +37,10 @@ import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.SearchFragment
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.flux.SearchActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.flux.SearchDispatcher
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.flux.SearchStore
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.post.PostActivity
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.post.flux.PostActionCreator
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.post.flux.PostDispatcher
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.post.flux.PostStore
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
@@ -62,6 +66,7 @@ val applicationModule = module {
     single { SearchDispatcher() }
     single { LoginDispatcher() }
     single { ArticleDispatcher() }
+    single { PostDispatcher() }
 }
 
 val mainActivityModule = module(MainActivity::class.moduleName) {
@@ -105,4 +110,9 @@ val contentActivityModule = module(ContentActivity::class.moduleName) {
 val articleActivityModule = module(ArticleActivity::class.moduleName) {
     factory { ArticleActionCreator(get(), get(), get()) }
     viewModel { ArticleStore(get()) }
+}
+
+val postActivityModule = module(PostActivity::class.moduleName) {
+    factory { PostActionCreator(get(), get(), get()) }
+    viewModel { PostStore(get()) }
 }

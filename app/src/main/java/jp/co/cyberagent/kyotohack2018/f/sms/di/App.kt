@@ -14,7 +14,8 @@ class App : Application() {
                 companyActivityModule,
                 eventActivityModule,
                 contentActivityModule,
-                articleActivityModule
+                articleActivityModule,
+                postActivityModule
         ))
 
         Kotpref.init(this)

@@ -64,7 +64,7 @@ class PostActivity : AppCompatActivity() {
                     Toast.makeText(this@PostActivity, "投稿をするにはTOPよりログインして下さい", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
-                
+
                 postActionCreator.sendArticle(PostArticle(
                         title = viewHolder.postTitle.text.toString(),
                         thumbnail = "",
