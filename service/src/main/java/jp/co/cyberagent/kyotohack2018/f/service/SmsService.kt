@@ -3,9 +3,7 @@ package jp.co.cyberagent.kyotohack2018.f.service
 import com.google.gson.JsonObject
 import io.reactivex.Flowable
 import io.reactivex.Single
-import jp.co.cyberagent.kyotohack2018.f.model.Article
-import jp.co.cyberagent.kyotohack2018.f.model.HomeContent
-import jp.co.cyberagent.kyotohack2018.f.model.Myself
+import jp.co.cyberagent.kyotohack2018.f.model.*
 import jp.co.cyberagent.kyotohack2018.f.model.category.Category
 import jp.co.cyberagent.kyotohack2018.f.model.company.Company
 import jp.co.cyberagent.kyotohack2018.f.model.content.Content
@@ -55,11 +53,13 @@ interface SmsService {
     @Headers("Accept: application/json",
             "Content-Type: application/json")
     @POST("/api/v1/article")
-    fun createArticle(@Body body: Article): Single<Article>
+    fun createArticle(@Body body: PostArticle): Single<PostArticle>
 
     @Headers("Accept: application/json",
             "Content-Type: application/json")
-    @POST("/api/v1/browsedHistory")
-    fun createBrowsedHistory(@Body json: JsonObject): Single<JsonObject>
+    @POST("/api/v1/browsed_history")
+    fun createBrowsedHistory(@Body browsedHistory: BrowsedHistory): Single<BrowsedHistory>
+
+
 
 }
