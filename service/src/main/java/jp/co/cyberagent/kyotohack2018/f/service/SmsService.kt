@@ -52,6 +52,9 @@ interface SmsService {
     @POST("/api/v1/user")
     fun createUser(@Body user: RegistUser): Single<RegistUser>
 
+    @GET("/api/v1/user/{uid}/articles")
+    fun getArticlesByUID(@Path("uid") uid: String): Single<List<Article>>
+
     @Headers("Accept: application/json",
             "Content-Type: application/json")
     @POST("/api/v1/article")
