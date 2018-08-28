@@ -8,10 +8,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="@drawable/tag_blue"
+        android:clickable="true"
         android:paddingLeft="16dp"
         android:paddingTop="8dp"
         android:paddingRight="16dp"
         android:paddingBottom="8dp"
+        android:src="?android:attr/selectableItemBackground"
         android:textSize="16sp"
         tools:text="タグ" />
 </layout>

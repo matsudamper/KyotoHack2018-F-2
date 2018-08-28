@@ -90,6 +90,11 @@ class ContentActivity : AppCompatActivity() {
                 appActionCreator.openCompany(this@ContentActivity, content.company)
             })
             add(PlayDescriptionItem(content.description))
+
+            // TODO ありえない
+            add(PlayCompanyItem(content.company.copy(name = "投稿を見る")) {
+                appActionCreator.openArticle(this@ContentActivity, content)
+            })
         }
     }
 }
