@@ -6,6 +6,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/list_main_image_size"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
         app:layout_constraintTop_toBottomOf="@+id/view">
 
         <ImageView
@@ -17,7 +19,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
-            tools:src="@android:drawable/stat_sys_phone_call" />
+            tools:src="@android:drawable/ic_menu_close_clear_cancel" />
 
         <TextView
             android:id="@+id/title"

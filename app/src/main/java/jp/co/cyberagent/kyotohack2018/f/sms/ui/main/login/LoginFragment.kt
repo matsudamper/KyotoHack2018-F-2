@@ -2,68 +2,64 @@ package jp.co.cyberagent.kyotohack2018.f.sms.ui.main.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
-import jp.co.cyberagent.kyotohack2018.f.sms.Config
 import jp.co.cyberagent.kyotohack2018.f.sms.R
 import jp.co.cyberagent.kyotohack2018.f.sms.databinding.FragmentLoginBinding
+import jp.co.cyberagent.kyotohack2018.f.sms.repository.AuthRepository
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.MainBaseFragment
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.flux.MainActivityActionCreator
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.login.flux.LoginActionCreator
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.login.flux.LoginStore
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class LoginFragment : MainBaseFragment<FragmentLoginBinding>() {
+    companion object {
+        val REQUEST_ID = 100
+    }
+
     override val titleResId = R.string.fragment_login
     override val layoutResId = R.layout.fragment_login
     override fun setTitle(titleResId: Int) = binding.toolBar.setTitle(titleResId)
 
-    val mAuth: FirebaseAuth by inject()
+    private val loginActionCreatorby: LoginActionCreator by inject()
+    private val mainActionCreator: MainActivityActionCreator by inject()
+    private val loginStore: LoginStore by viewModel()
 
-    private val gso by lazy {
-        GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(Config.ANDROID_KEY)
-                .requestEmail()
-                .build()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        loginStore.createAccount
+                .subscribe {
+                    mainActionCreator.changeFragment(requireFragmentManager(), R.id.my_page)
+                }
+
         binding.signingIn.setOnClickListener {
-            val mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
-            startActivityForResult(mGoogleSignInClient.signInIntent, 100)
+            loginActionCreatorby.startAuth(requireActivity(), REQUEST_ID)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 100) {
+        if (requestCode == REQUEST_ID) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
 
             try {
                 val account = task.getResult(ApiException::class.java)
 
-                firebaseAuthWithGoogle(account)
-                Log.d("LOG", "Result")
-                Log.d("LOG", "${account.toJson()}")
+                AuthRepository.apply {
+                    name = account.displayName
+                    idToken = account.idToken
+                }
+
+                loginActionCreatorby.firebaseAuthWithGoogle(account, requireActivity())
             } catch (e: ApiException) {
                 e.printStackTrace()
             }
         }
-    }
-
-    private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
-        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
-
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(requireActivity()) { task ->
-                    if (task.isSuccessful) {
-                        val user = mAuth.currentUser
-                    }
-                }
     }
 }
