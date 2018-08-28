@@ -72,37 +72,37 @@ val mainActivityModule = module(MainActivity::class.moduleName) {
     factory { LoginFragment() }
 
     // Flux
-    factory { MainActivityActionCreator(get(), get()) }
+    factory { MainActivityActionCreator(get(), get(), get()) }
     viewModel { MainActivityStore(get()) }
 
     factory { MypageActionCreator(get()) }
     viewModel { MypageStore(get()) }
 
-    factory { SearchActionCreator(get(), get()) }
+    factory { SearchActionCreator(get(), get(), get()) }
     viewModel { SearchStore(get()) }
 
     single { FirebaseAuth.getInstance() }
 
-    factory { LoginActionCreator(get(), get()) }
+    factory { LoginActionCreator(get(), get(), get()) }
     viewModel { LoginStore(get()) }
 }
 
 val companyActivityModule = module(CompanyActivity::class.moduleName) {
-    factory { CompanyActionCreator(get(), get()) }
+    factory { CompanyActionCreator(get(), get(), get()) }
     viewModel { CompanyStore(get()) }
 }
 
 val eventActivityModule = module(EventActivity::class.moduleName) {
-    factory { EventActionCreator(get(), get()) }
+    factory { EventActionCreator(get(), get(), get()) }
     viewModel { EventStore(get()) }
 }
 
 val contentActivityModule = module(ContentActivity::class.moduleName) {
-    factory { ContentActionCreator(get(), get()) }
+    factory { ContentActionCreator(get(), get(), get()) }
     viewModel { ContentStore(get()) }
 }
 
 val articleActivityModule = module(ArticleActivity::class.moduleName) {
-    factory { ArticleActionCreator(get(), get()) }
+    factory { ArticleActionCreator(get(), get(), get()) }
     viewModel { ArticleStore(get()) }
 }

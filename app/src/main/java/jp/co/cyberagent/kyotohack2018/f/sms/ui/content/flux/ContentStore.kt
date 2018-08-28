@@ -8,4 +8,5 @@ class ContentStore(
 ) : Store() {
 
     val content = contentDispatcher.onLoadContent.toMapLiveData()
+    val history = contentDispatcher.onLoadContent.toMapLiveData()
 }

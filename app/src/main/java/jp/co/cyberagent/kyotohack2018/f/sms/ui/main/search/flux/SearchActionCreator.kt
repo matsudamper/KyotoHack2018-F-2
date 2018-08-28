@@ -2,9 +2,11 @@ package jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.flux
 
 import android.annotation.SuppressLint
 import io.reactivex.schedulers.Schedulers
+import jp.co.cyberagent.kyotohack2018.f.sms.flux.app.AppActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.SearchRepository
 
 class SearchActionCreator(
+        private val appActionCreator: AppActionCreator,
         private val searchDispatcher: SearchDispatcher,
         private val searchRepository: SearchRepository
 ) {
@@ -16,7 +18,7 @@ class SearchActionCreator(
                 .subscribe({
                     searchDispatcher.dispatch(SearchAction.LoadCategories(it))
                 }, {
-                    it.printStackTrace()
+                    appActionCreator.displayError(it)
                 })
     }
 
@@ -27,7 +29,7 @@ class SearchActionCreator(
                 .subscribe({
                     searchDispatcher.dispatch(SearchAction.SearchContents(it))
                 }, {
-                    it.printStackTrace()
+                    appActionCreator.displayError(it)
                 })
     }
 }

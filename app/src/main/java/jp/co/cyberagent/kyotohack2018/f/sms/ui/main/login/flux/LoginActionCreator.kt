@@ -10,12 +10,14 @@ import com.google.firebase.auth.GoogleAuthProvider
 import io.reactivex.schedulers.Schedulers
 import jp.co.cyberagent.kyotohack2018.f.service.sms.RegistUser
 import jp.co.cyberagent.kyotohack2018.f.sms.Config
+import jp.co.cyberagent.kyotohack2018.f.sms.flux.app.AppActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.AuthRepository
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.LoginRepository
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 
 class LoginActionCreator(
+        private val appActionCreator: AppActionCreator,
         private val dispatcher: LoginDispatcher,
         private val loginRepository: LoginRepository
 ) : KoinComponent {
@@ -29,7 +31,7 @@ class LoginActionCreator(
                 .subscribe({
                     dispatcher.dispatch(LoginAction.CreateAccount(it))
                 }, {
-
+                    appActionCreator.displayError(it)
                 })
     }
 

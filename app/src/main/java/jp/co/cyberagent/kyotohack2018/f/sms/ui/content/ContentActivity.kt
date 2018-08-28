@@ -24,12 +24,12 @@ import jp.co.cyberagent.kyotohack2018.f.sms.ext.doIfNotNull
 import jp.co.cyberagent.kyotohack2018.f.sms.ext.doIfNull
 import jp.co.cyberagent.kyotohack2018.f.sms.ext.observeNotNull
 import jp.co.cyberagent.kyotohack2018.f.sms.flux.app.AppActionCreator
+import jp.co.cyberagent.kyotohack2018.f.sms.repository.AuthRepository
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.company.item.CompanyItem
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.content.flux.ContentActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.content.flux.ContentStore
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.content.item.PlayCompanyItem
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.content.item.PlayDescriptionItem
-import jp.co.cyberagent.kyotohack2018.f.sms.ui.post.PostActivity
 import org.koin.android.ext.android.inject
 
 
@@ -62,6 +62,12 @@ class ContentActivity : AppCompatActivity() {
         contentStore.content
                 .doIfNull { contentActionCreator.loadContent(contentCard.id) }
                 .observeNotNull(this) { initializeView(it) }
+
+        AuthRepository.uuid?.also { uuid ->
+            contentStore.history
+                    .doIfNull { contentActionCreator.sendHistory(contentCard.id, uuid) }
+                    .observeNotNull(this) {}
+        }
     }
 
     private fun initializeView(content: Content) {

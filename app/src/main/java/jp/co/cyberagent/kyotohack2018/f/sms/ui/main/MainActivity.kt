@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import io.reactivex.schedulers.Schedulers
-import jp.co.cyberagent.kyotohack2018.f.model.Article
 import jp.co.cyberagent.kyotohack2018.f.model.PostArticle
 import jp.co.cyberagent.kyotohack2018.f.service.SmsService
 import jp.co.cyberagent.kyotohack2018.f.sms.R

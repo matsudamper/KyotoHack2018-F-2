@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import io.reactivex.schedulers.Schedulers
 import jp.co.cyberagent.kyotohack2018.f.sms.R
+import jp.co.cyberagent.kyotohack2018.f.sms.flux.app.AppActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.AuthRepository
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.HomeRepository
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.home.HomeFragment
@@ -16,6 +17,7 @@ import org.koin.standalone.KoinComponent
 import org.koin.standalone.get
 
 class MainActivityActionCreator(
+        private val appActionCreator: AppActionCreator,
         private val homeRepository: HomeRepository,
         private val mainActivityDispatcher: MainActivityDispatcher
 ) : KoinComponent {
@@ -52,7 +54,7 @@ class MainActivityActionCreator(
                 .subscribe({
                     mainActivityDispatcher.dispatch(MainActivityAction.LoadHomeContent(it))
                 }, {
-                    it.printStackTrace()
+                    appActionCreator.displayError(it)
                 })
     }
 
@@ -63,7 +65,7 @@ class MainActivityActionCreator(
                 .subscribe({
                     mainActivityDispatcher.dispatch(MainActivityAction.LoadArticle(it))
                 }, {
-
+                    appActionCreator.displayError(it)
                 })
     }
 }

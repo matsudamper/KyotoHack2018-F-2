@@ -21,15 +21,19 @@ class AppActionCreator {
         context?.startActivity(EventActivity.createIntent(context, eventCard))
     }
 
-    fun openCompany(context: Context?, companyCard: CompanyCard){
+    fun openCompany(context: Context?, companyCard: CompanyCard) {
         context?.startActivity(CompanyActivity.createIntent(context, companyCard))
     }
 
-    fun openArticle(context: Context?, content : Content){
+    fun openArticle(context: Context?, content: Content) {
         context?.startActivity(ArticleActivity.createIntent(context, content))
     }
 
-    fun openPost(context: Context?, content: Content){
+    fun openPost(context: Context?, content: Content) {
         context?.startActivity(PostActivity.createIntent(context, content))
+    }
+
+    fun displayError(e: Throwable) {
+
     }
 }
