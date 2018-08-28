@@ -57,11 +57,11 @@ class MainActivityActionCreator(
     }
 
     @SuppressLint("CheckResult")
-    fun loadMyself() {
-        homeRepository.getMyself()
+    fun loadArticle(uid : String) {
+        homeRepository.getArticle(uid)
                 .subscribeOn(Schedulers.io())
                 .subscribe({
-                    mainActivityDispatcher.dispatch(MainActivityAction.LoadMyself(it))
+                    mainActivityDispatcher.dispatch(MainActivityAction.LoadArticle(it))
                 }, {
 
                 })
