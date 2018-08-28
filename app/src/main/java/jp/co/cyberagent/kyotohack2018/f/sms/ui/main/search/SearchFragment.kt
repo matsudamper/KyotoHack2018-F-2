@@ -21,6 +21,7 @@ import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.flux.SearchActionCrea
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.flux.SearchStore
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.view.ContentlItem
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class SearchFragment : MainBaseFragment<FragmentSearchBinding>() {
@@ -30,7 +31,7 @@ class SearchFragment : MainBaseFragment<FragmentSearchBinding>() {
 
     private val appActionCreator: AppActionCreator by inject()
     private val searchActionCreator: SearchActionCreator by inject()
-    private val searchStore: SearchStore by inject()
+    private val searchStore: SearchStore by viewModel()
 
     private val adapterOne = CategoryAdapter()
     private val adapterTwo = CategoryAdapter()
