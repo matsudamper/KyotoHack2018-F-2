@@ -34,6 +34,7 @@
         <activity android:name=".ui.event.EventActivity" />
         <activity android:name=".ui.content.ContentActivity" />
         <activity android:name=".ui.artcle.ArticleActivity" />
+        <activity android:name=".ui.post.PostActivity" />
     </application>
 
 </manifest>

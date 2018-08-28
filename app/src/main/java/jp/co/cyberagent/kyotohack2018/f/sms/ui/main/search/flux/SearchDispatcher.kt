@@ -1,12 +1,13 @@
 package jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.flux
 
 import io.reactivex.processors.BehaviorProcessor
+import io.reactivex.processors.PublishProcessor
 import jp.co.cyberagent.kyotohack2018.f.sms.ext.toFlowable
 import jp.co.cyberagent.kyotohack2018.f.sms.flux.Action
 import jp.co.cyberagent.kyotohack2018.f.sms.flux.Dispatcher
 
 class SearchDispatcher : Dispatcher {
-    private val dispatcherLoadCategories = BehaviorProcessor.create<SearchAction.LoadCategories>()
+    private val dispatcherLoadCategories = PublishProcessor.create<SearchAction.LoadCategories>()
     private val dispatchrSearchContents = BehaviorProcessor.create<SearchAction.SearchContents>()
 
     val onLoadCatogories = dispatcherLoadCategories.toFlowable()

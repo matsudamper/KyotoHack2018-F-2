@@ -9,6 +9,7 @@ import jp.co.cyberagent.kyotohack2018.f.sms.ui.artcle.ArticleActivity
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.company.CompanyActivity
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.content.ContentActivity
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.event.EventActivity
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.post.PostActivity
 
 class AppActionCreator {
 
@@ -26,5 +27,9 @@ class AppActionCreator {
 
     fun openArticle(context: Context?, content : Content){
         context?.startActivity(ArticleActivity.createIntent(context, content))
+    }
+
+    fun openPost(context: Context?, content: Content){
+        context?.startActivity(PostActivity.createIntent(context, content))
     }
 }

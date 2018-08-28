@@ -24,10 +24,12 @@ import jp.co.cyberagent.kyotohack2018.f.sms.ext.doIfNotNull
 import jp.co.cyberagent.kyotohack2018.f.sms.ext.doIfNull
 import jp.co.cyberagent.kyotohack2018.f.sms.ext.observeNotNull
 import jp.co.cyberagent.kyotohack2018.f.sms.flux.app.AppActionCreator
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.company.item.CompanyItem
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.content.flux.ContentActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.content.flux.ContentStore
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.content.item.PlayCompanyItem
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.content.item.PlayDescriptionItem
+import jp.co.cyberagent.kyotohack2018.f.sms.ui.post.PostActivity
 import org.koin.android.ext.android.inject
 
 
@@ -91,8 +93,7 @@ class ContentActivity : AppCompatActivity() {
             })
             add(PlayDescriptionItem(content.description))
 
-            // TODO ありえない
-            add(PlayCompanyItem(content.company.copy(name = "投稿を見る")) {
+            add(CompanyItem(android.R.drawable.ic_menu_search, "投稿を見る") {
                 appActionCreator.openArticle(this@ContentActivity, content)
             })
         }

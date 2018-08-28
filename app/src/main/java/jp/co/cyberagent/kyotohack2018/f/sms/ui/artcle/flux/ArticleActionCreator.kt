@@ -1,6 +1,7 @@
 package jp.co.cyberagent.kyotohack2018.f.sms.ui.artcle.flux
 
 import io.reactivex.schedulers.Schedulers
+import jp.co.cyberagent.kyotohack2018.f.sms.ext.println
 import jp.co.cyberagent.kyotohack2018.f.sms.repository.ArticleRepository
 
 class ArticleActionCreator(

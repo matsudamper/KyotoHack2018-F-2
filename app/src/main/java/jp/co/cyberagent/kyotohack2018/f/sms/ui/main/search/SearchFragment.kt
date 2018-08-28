@@ -14,6 +14,7 @@ import jp.co.cyberagent.kyotohack2018.f.sms.R
 import jp.co.cyberagent.kyotohack2018.f.sms.databinding.FragmentSearchBinding
 import jp.co.cyberagent.kyotohack2018.f.sms.ext.doIfNull
 import jp.co.cyberagent.kyotohack2018.f.sms.ext.observeNotNull
+import jp.co.cyberagent.kyotohack2018.f.sms.ext.println
 import jp.co.cyberagent.kyotohack2018.f.sms.flux.app.AppActionCreator
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.MainBaseFragment
 import jp.co.cyberagent.kyotohack2018.f.sms.ui.main.search.flux.SearchActionCreator
@@ -94,8 +95,8 @@ class SearchFragment : MainBaseFragment<FragmentSearchBinding>() {
     }
 
     private fun setContent(contentCards: List<ContentCard>) {
+        contentCards.println()
         binding.recyclerView.swapAdapter(GroupAdapter<ViewHolder>().apply {
-
             addAll(contentCards.map {
                 ContentlItem(it) {
                     appActionCreator.openContent(requireContext(), it)
